@@ -123,6 +123,7 @@
        (list
         (expand-file-name "~/.emacs.d/elisp")
         (expand-file-name "~/.emacs.d/elisp/auto-complete")
+        (expand-file-name "~/.emacs.d/elisp/magit")
         (expand-file-name "~/.emacs.d/elisp/navi2ch")
         (expand-file-name "~/.emacs.d/elisp/helm")
         (expand-file-name "~/.emacs.d/elisp/yasnippet")
@@ -130,6 +131,7 @@
         (expand-file-name "~/.emacs.d/elisp/library/apel")
         (expand-file-name "~/.emacs.d/elisp/library/emu")
         (expand-file-name "~/.emacs.d/elisp/mode")
+        (expand-file-name "~/.emacs.d/elisp/mode/markdown")
         (expand-file-name "~/.emacs.d/elisp/mode/mmm")
         (expand-file-name "~/.emacs.d/elisp/mode/php")
         (expand-file-name "~/.emacs.d/elisp/mode/pukiwiki")
