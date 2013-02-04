@@ -136,6 +136,7 @@
         (expand-file-name "~/.emacs.d/elisp/mode/php")
         (expand-file-name "~/.emacs.d/elisp/mode/pukiwiki")
         (expand-file-name "~/.emacs.d/elisp/mode/ruby")
+        (expand-file-name "~/.emacs.d/elisp/mode/textile")
         (expand-file-name "~/.emacs.d/elisp/mode/yaml")
         (expand-file-name "~/.emacs.d/elisp/mode/zencoding")
         )
