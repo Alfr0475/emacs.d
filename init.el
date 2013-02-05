@@ -131,6 +131,7 @@
         (expand-file-name "~/.emacs.d/elisp/library/apel")
         (expand-file-name "~/.emacs.d/elisp/library/emu")
         (expand-file-name "~/.emacs.d/elisp/mode")
+        (expand-file-name "~/.emacs.d/elisp/mode/csharp")
         (expand-file-name "~/.emacs.d/elisp/mode/markdown")
         (expand-file-name "~/.emacs.d/elisp/mode/mmm")
         (expand-file-name "~/.emacs.d/elisp/mode/php")

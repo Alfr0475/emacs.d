@@ -25,7 +25,6 @@
 (setq-default indent-tabs-mode nil)     ; タブを使わない
 (setq-default indent-level 4)           ; インデントレベル
 (setq-default tab-width 4)              ; タブ幅
-(c-set-offset 'case-label '+)           ; case文の設定
 
 ;; up/down case
 (put 'upcase-region 'disabled nil)      ; 大文字化の問い合わせ無し
@@ -52,6 +51,44 @@
 (global-linum-mode t)                   ; バッファ中の行番号表示
 (setq linum-format "%5d")               ; 行番号書式
 
+
+;; オリジナルのc-styleを定義
+;; 基本的にこのスタイルでコーディングする
+;; 何のスタイルが適用されているか調べる時は対象の行にカーソルを置いて、C-c C-s
+;; 試す場合はC-c C-oでスタイルを選んで適当に値を入れる
+(c-add-style "original-style"
+             '(
+               (indent-level . 4)       ; インデントレベル
+               (indent-tabs-mode . nil) ; タブを使わない
+               (tab-width . 4)          ; タブ幅
+               (c-basic-offset . 4)     ; c-set-offsetで特殊文字を設定した際のオフセット
+               (c-offsets-alist
+                (defun-open . 0)            ; 関数定義を開始する中括弧
+                (defun-close . 0)           ; 関数定義を終了する中括弧
+                (defun-block-intro . +)     ; トップレベルの関数定義の最初の行
+                (class-open . 0)            ; クラス定義を開始する中括弧
+                (class-close . 0)           ; クラス定義を終了する中括弧
+                (topmost-intro . 0)         ; 最上位の言語構成要素の最初の行
+                (topmost-intro-cont . 0)    ; 最上位の言語構成要素の２行目以降
+                (block-open . 0)            ; 文ブロックを開始する中括弧
+                (block-close . 0)           ; 文ブロックを終了する中括弧
+                (statement . 0)             ; 通常の文
+                (statement-cont . +)        ; 分の継続行
+                (statement-block-intro . +) ; 新規文ブロックの最初の行
+                (statement-case-intro . +)  ; caseブロックの最初の行
+                (statement-case-open . 0)   ; 中括弧で始まるcaseブロックの最初の行
+                (substatement . +)          ; if,while,for,do,elseの直後の最初の行
+                (substatement-open . 0)     ; substatementのブロックを開始する中括弧
+                (case-label . +)            ; caseまたはdefaultラベル
+                (label . 0)                 ; 通常のラベル
+                (do-while-closure . 0)      ; do-while文のwhile
+                (else-clause . 0)           ; if-else文のelse
+                (comment-intro . 0)         ; コメントの導入部分だけを含んだ行
+                (arglist-intro . +)         ; 引数リストの最初の行
+                (arglist-cont . 0)          ; 引数リストを開始する括弧の行に引数がない場合、引数リストの２行目以降
+                (arglist-cont-nonempty . +) ; 引数リストを開始する括弧の行に少なくとも１つの引数がある場合、引数リストの２行目以降
+                (arglist-close . 0)         ; 引数リストを終了する括弧
+                )))
 
 ;; 短形選択をやりやすく
 ;; (require 'sense-region)

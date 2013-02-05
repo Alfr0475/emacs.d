@@ -15,7 +15,21 @@
 ;;------------------------------------------------------------------------------
 ;; 環境別フォント設定
 ;;------------------------------------------------------------------------------
-(cond ((and window-system run-emacs23 run-w32)
+(cond ((and window-system run-emacs24 run-w32)
+       ;; Windows環境でのGUI版Emacs24系
+       (set-default-font "Consolas-11")
+       (set-fontset-font (frame-parameter nil 'font)
+                         'japanese-jisx0208
+                         '("ＭＳ ゴシック" . "unicode-bmp")) ; 全角文字
+       (set-fontset-font (frame-parameter nil 'font)
+                         'katakana-jisx0201
+                         '("ＭＳ ゴシック" . "unicode-bmp")) ; 半角カタカナ
+       (set-fontset-font (frame-parameter nil 'font)
+                         'cp932
+                         '("ＭＳ ゴシック" . "unicode-bmp")) ; 機種依存文字
+       )
+
+      ((and window-system run-emacs23 run-w32)
        ;; Windows環境でのGUI版Emacs23系
        (set-default-font "Consolas-11")
        (set-fontset-font (frame-parameter nil 'font)
