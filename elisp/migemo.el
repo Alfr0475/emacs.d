@@ -1,4 +1,4 @@
-;; -*- mode: Emacs-Lisp; coding: euc-jp-unix -*-
+;; -*- mode: Emacs-Lisp; coding: utf-8-unix -*-
 ;;; migemo.el - Japanese incremental search trough dynamic pattern expansion
 
 ;; $Id: migemo.el.in,v 1.8 2006/09/22 08:43:33 shirai Exp $
@@ -45,7 +45,7 @@
   :group 'migemo
   :type '(repeat string))
 
-(defcustom migemo-white-space-regexp "[ °°\t\r\n]*"
+(defcustom migemo-white-space-regexp "[ „ÄÄ\t\r\n]*"
   "*Regexp representing white spaces."
   :group 'migemo
   :type 'string)
@@ -180,8 +180,8 @@
 	(set-process-coding-system proc 
 				   migemo-coding-system 
 				   migemo-coding-system)
-      (set-process-input-coding-system  proc migemo-coding-system)
-      (set-process-output-coding-system proc migemo-coding-system))
+      (set-process-coding-system  proc migemo-coding-system))
+      ;; (set-process-output-coding-system proc migemo-coding-system))
     proc))
 
 (defun migemo-init ()
@@ -210,7 +210,8 @@
 	(setq migemo-buffer (get-buffer-create " *migemo*"))
 	(setq migemo-process (migemo-start-process 
 			      "migemo" migemo-buffer migemo-command options))
-	(process-kill-without-query migemo-process)
+	;; (Process-kill-without-query migemo-process)
+	(process-query-on-exit-flag migemo-process)
 	t)))
 
 (defun migemo-replace-in-string (string from to)
@@ -482,7 +483,7 @@ into the migemo's regexp pattern."
 			(if migemo-emacs21p
 			    (put-text-property 0 (length str)
 					       'face migemo-dabbrev-ol-face str)
-			  (setq str (concat "°⁄" str "°€")))
+			  (setq str (concat "„Äê" str "„Äë")))
 			(message "(%d): %s%s%s"
 				 (count-lines (point-min) matched-start)
 				 (buffer-substring-no-properties lstart matched-start)
@@ -704,5 +705,5 @@ This function used with Megemo feature."
 (provide 'migemo)
 
 ;; sample
-;; 0123 abcd ABCD §“§È§¨§  •´•ø•´•  ¥¡ª˙ !"[#\$]%^&_':`(;)<*=+>,?-@./{|}~
+;; 0123 abcd ABCD „Å≤„Çâ„Åå„Å™ „Ç´„Çø„Ç´„Éä Êº¢Â≠ó !"[#\$]%^&_':`(;)<*=+>,?-@./{|}~
 

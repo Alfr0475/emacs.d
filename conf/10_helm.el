@@ -24,6 +24,11 @@ It is an enhanced version of `helm-for-buffers'."
         :buffer "*helm buffers*" :keymap helm-c-buffer-map))
 
 
+(custom-set-variables '(helm-ff-auto-update-initial-value nil)) ; 自動補完を無効
+
+(define-key helm-c-read-file-map (kbd "C-h") 'delete-backward-char) ; C-hでバックスペース
+(define-key helm-c-read-file-map (kbd "TAB") 'helm-execute-persistent-action) ; TABで任意補完。選択肢が出てきたらC-nやC-pで上下移動してから決定する事も可能
+
 (define-key helm-map (kbd "C-h") 'delete-backward-char) ; helm中はC-hが効かなかったから再定義
 
 (global-set-key (kbd "C-c h") 'helm-mini)        ; helm起動

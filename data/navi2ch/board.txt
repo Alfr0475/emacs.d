@@ -19,21 +19,24 @@ lifeline
 おすすめ
 
 
-きのこ
-http://uni.2ch.net/kinoko/
-kinoko
-民俗・神話学
-http://awabi.2ch.net/min/
-min
-ファッション
-http://toro.2ch.net/fashion/
-fashion
+プロバイダー
+http://engawa.2ch.net/isp/
+isp
+携帯・ＰＨＳ
+http://awabi.2ch.net/phs/
+phs
+パズル
+http://ikura.2ch.net/puzzle/
+puzzle
+トランプ
+http://awabi.2ch.net/card/
+card
 スポーツクラブ
 http://uni.2ch.net/sportsclub/
 sportsclub
-DIY
-http://awabi.2ch.net/diy/
-diy
+コンビニ
+http://uni.2ch.net/conv/
+conv
 be
 
 
@@ -187,9 +190,6 @@ dataroom
 投票所
 http://kohada.2ch.net/vote/
 vote
-忍者の里
-http://uni.2ch.net/sato/
-sato
 運営
 
 
@@ -1804,9 +1804,6 @@ gamerobo
 ギャルゲー
 http://toro.2ch.net/gal/
 gal
-女向ゲー大人
-http://kohada.2ch.net/gboy/
-gboy
 女向ゲー一般
 http://kohada.2ch.net/ggirl/
 ggirl
@@ -2047,7 +2044,7 @@ mystery
 SF・FT・ホラー
 http://toro.2ch.net/sf/
 sf
-文芸キャラ
+ノベルキャラ
 http://uni.2ch.net/litechara/
 litechara
 雑誌
@@ -2530,6 +2527,9 @@ eromog2
 お下品
 http://pele.bbspink.com/ogefin/
 ogefin
+801サロン
+http://kilauea.bbspink.com/801saloon/
+801saloon
 ぴんく難民
 http://kilauea.bbspink.com/pinknanmin/
 pinknanmin
@@ -2542,6 +2542,9 @@ housekeeping
 PINK規制議論
 http://pele.bbspink.com/ccc/
 ccc
+くノ一の山
+http://pele.bbspink.com/yama/
+yama
 大人の海外
 http://pele.bbspink.com/21oversea2/
 21oversea2
@@ -2557,6 +2560,9 @@ erog
 Leaf・key
 http://pele.bbspink.com/leaf/
 leaf
+女向ゲー大人
+http://kilauea.bbspink.com/gagame/
+gagame
 アダルトサイト
 http://pele.bbspink.com/adultsite/
 adultsite
@@ -2692,6 +2698,12 @@ cherryboy
 女神
 http://kilauea.bbspink.com/megami/
 megami
+にゃあ
+http://kilauea.bbspink.com/meow/
+meow
+大人のモバイル
+http://kilauea.bbspink.com/mobpink/
+mobpink
 English
 http://kilauea.bbspink.com/bbbb/
 bbbb
