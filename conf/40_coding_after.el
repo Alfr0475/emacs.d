@@ -1,27 +1,27 @@
-;; mmm-mode
-(require 'mmm-mode)
+;; ;; mmm-mode
+;; (require 'mmm-mode)
 
-(setq mmm-global-mode 'maybe)               ; 使用タイミング      t:nil:maybe
-(setq mmm-submode-decoration-level 0)       ; submodeの装飾レベル 0:1:2
-(invert-face 'mmm-default-submode-face nil) ; 前景色と背景色の入れ替え
-(setq mmm-font-lock-available-p t)          ; font-lockを有効化
+;; (setq mmm-global-mode 'maybe)               ; 使用タイミング      t:nil:maybe
+;; (setq mmm-submode-decoration-level 0)       ; submodeの装飾レベル 0:1:2
+;; (invert-face 'mmm-default-submode-face nil) ; 前景色と背景色の入れ替え
+;; (setq mmm-font-lock-available-p t)          ; font-lockを有効化
 
-;; html + javascript
-(mmm-add-classes
- '((mmm-javascript
-    :submode javascript-mode
-    :front "<script[^>]*>[^<]"
-    :front-offset -1
-    :back "\n?[ \t]*</script>")))
-(mmm-add-mode-ext-class nil "\\.html?\\'" 'mmm-javascript)
+;; ;; html + javascript
+;; (mmm-add-classes
+;;  '((mmm-javascript
+;;     :submode javascript-mode
+;;     :front "<script[^>]*>[^<]"
+;;     :front-offset -1
+;;     :back "\n?[ \t]*</script>")))
+;; (mmm-add-mode-ext-class nil "\\.html?\\'" 'mmm-javascript)
 
-;; html + css
-(mmm-add-classes
- '((mmm-css
-    :submode css-mode
-    :front "<style[^>]*>"
-    :back "\n?[ \t]*</style>")))
-(mmm-add-mode-ext-class nil "\\.html?\\'" 'mmm-css)
+;; ;; html + css
+;; (mmm-add-classes
+;;  '((mmm-css
+;;     :submode css-mode
+;;     :front "<style[^>]*>"
+;;     :back "\n?[ \t]*</style>")))
+;; (mmm-add-mode-ext-class nil "\\.html?\\'" 'mmm-css)
 
 ;; インデントの改善
 ;; (defun save-mmm-c-locals ()

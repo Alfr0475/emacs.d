@@ -8,16 +8,16 @@
 ;; org-default-notes-fileのファイル名
 (setq org-default-notes-file (expand-file-name "memo.org" org-directory))
 
-;; org-rememberを使う
-(org-remember-insinuate)
+;; ;; org-rememberを使う
+;; (org-remember-insinuate)
 
-;; org-rememberの呼び出し
-(global-set-key (kbd "C-c r") 'org-remember)
+;; ;; org-rememberの呼び出し
+;; (global-set-key (kbd "C-c r") 'org-remember)
 
-;; org-rememberのテンプレート
-(setq org-remember-templates
-      '(("Note" ?n "* %?\n  %i\n  %a" nil "Memo")
-        ("Todo" ?t "* TODO %?\n  %i\n  %a" nil "Tasks")))
+;; ;; org-rememberのテンプレート
+;; (setq org-remember-templates
+;;       '(("Note" ?n "* %?\n  %i\n  %a" nil "Memo")
+;;         ("Todo" ?t "* TODO %?\n  %i\n  %a" nil "Tasks")))
 
 ;; 画像をインライン表示
 (setq org-startup-with-inline-images t)

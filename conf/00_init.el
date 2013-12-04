@@ -1,8 +1,11 @@
 ;; current
 (cd "~/")                               ; デフォルトディレクトリ
 
-;; encode
-(require 'cp5022x)
+(cond ((and run-w32)
+       ;; encode
+       (require 'cp5022x)
+       ))
+
 (set-language-environment "Japanese")   ; 言語設定
 (prefer-coding-system 'utf-8-unix)
 (set-terminal-coding-system 'utf-8)

@@ -1,5 +1,5 @@
 (require 'php-mode)
-(require 'phpdoc)
+;;(require 'phpdoc)
 
 ; (setq php-mode-force-pear t)          ; PEAR規約設定
 

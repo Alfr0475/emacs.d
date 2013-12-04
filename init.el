@@ -115,34 +115,51 @@
   (and run-xemacs (not (featurep 'mule))))
 (defvar run-carbon-emacs (and run-darwin window-system))
 
+
+
+;;----------------------------------------------------------------------
+;; package configuration
+;;----------------------------------------------------------------------
+(cond ((and run-linux run-emacs24)
+       (require 'package)
+       (setq package-user-dir "~/.emacs.d/site-lisp")
+       (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+       (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+       (package-initialize)
+       )
+      )
+
 ;;----------------------------------------------------------------------
 ;; load-path configuration
 ;;----------------------------------------------------------------------
-(setq load-path
-      (append
-       (list
-        (expand-file-name "~/.emacs.d/elisp")
-        (expand-file-name "~/.emacs.d/elisp/auto-complete")
-        (expand-file-name "~/.emacs.d/elisp/magit")
-        (expand-file-name "~/.emacs.d/elisp/navi2ch")
-        (expand-file-name "~/.emacs.d/elisp/helm")
-        (expand-file-name "~/.emacs.d/elisp/yasnippet")
-        (expand-file-name "~/.emacs.d/elisp/library")
-        (expand-file-name "~/.emacs.d/elisp/library/apel")
-        (expand-file-name "~/.emacs.d/elisp/library/emu")
-        (expand-file-name "~/.emacs.d/elisp/mode")
-        (expand-file-name "~/.emacs.d/elisp/mode/bat")
-        (expand-file-name "~/.emacs.d/elisp/mode/csharp")
-        (expand-file-name "~/.emacs.d/elisp/mode/markdown")
-        (expand-file-name "~/.emacs.d/elisp/mode/mmm")
-        (expand-file-name "~/.emacs.d/elisp/mode/php")
-        (expand-file-name "~/.emacs.d/elisp/mode/pukiwiki")
-        (expand-file-name "~/.emacs.d/elisp/mode/ruby")
-        (expand-file-name "~/.emacs.d/elisp/mode/textile")
-        (expand-file-name "~/.emacs.d/elisp/mode/yaml")
-        (expand-file-name "~/.emacs.d/elisp/mode/zencoding")
-        )
-       load-path))
+(cond ((and run-w32)
+       (setq load-path
+             (append
+              (list
+               (expand-file-name "~/.emacs.d/elisp")
+               (expand-file-name "~/.emacs.d/elisp/auto-complete")
+               (expand-file-name "~/.emacs.d/elisp/magit")
+               (expand-file-name "~/.emacs.d/elisp/navi2ch")
+               (expand-file-name "~/.emacs.d/elisp/helm")
+               (expand-file-name "~/.emacs.d/elisp/yasnippet")
+               (expand-file-name "~/.emacs.d/elisp/library")
+               (expand-file-name "~/.emacs.d/elisp/library/apel")
+               (expand-file-name "~/.emacs.d/elisp/library/emu")
+               (expand-file-name "~/.emacs.d/elisp/mode")
+               (expand-file-name "~/.emacs.d/elisp/mode/bat")
+               (expand-file-name "~/.emacs.d/elisp/mode/csharp")
+               (expand-file-name "~/.emacs.d/elisp/mode/markdown")
+               (expand-file-name "~/.emacs.d/elisp/mode/mmm")
+               (expand-file-name "~/.emacs.d/elisp/mode/php")
+               (expand-file-name "~/.emacs.d/elisp/mode/pukiwiki")
+               (expand-file-name "~/.emacs.d/elisp/mode/ruby")
+               (expand-file-name "~/.emacs.d/elisp/mode/textile")
+               (expand-file-name "~/.emacs.d/elisp/mode/yaml")
+               (expand-file-name "~/.emacs.d/elisp/mode/zencoding")
+               )
+              load-path))
+       )
+      )
 
 ;;----------------------------------------------------------------------
 ;; load settings
@@ -157,4 +174,3 @@
 
 (unless (server-running-p)              ; 複数サーバー起動を防ぐ
   (server-start))
-

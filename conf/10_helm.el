@@ -2,7 +2,7 @@
 (require 'helm-config)
 
 (helm-mode 1)                           ; 常時helm使用
-(helm-dired-bindings 1)
+;;(helm-dired-bindings 1)
 
 (setq helm-idle-delay 0.2)        ; 候補を表示するまでの時間
 (setq helm-input-idle-delay 0.1)  ; タイプしてから再描画するまでの時間
