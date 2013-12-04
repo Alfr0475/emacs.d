@@ -1,6 +1,9 @@
 ;; ruby-mode
-(autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
-(setq auto-mode-alist (append '(("\\.rb$" . ruby-mode)) auto-mode-alist))
+(autoload 'ruby-mode "ruby-mode"
+  "Mode for editing ruby source files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
 ;; ruby-electric
 (require 'ruby-electric)
