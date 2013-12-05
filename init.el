@@ -120,9 +120,9 @@
 ;;----------------------------------------------------------------------
 ;; package configuration
 ;;----------------------------------------------------------------------
-(cond ((and run-linux run-emacs24)
+(cond ((and run-emacs24)
        (require 'package)
-       (setq package-user-dir "~/.emacs.d/site-lisp")
+       (setq package-user-dir (concat user-emacs-directory "site-lisp"))
        (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
        (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
        (package-initialize)

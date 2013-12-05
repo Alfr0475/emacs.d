@@ -5,8 +5,6 @@
        (set-cursor-color                                      "#FFFFFF") ; カーソル色
        (set-face-foreground 'region                           "#C1CDCD") ; リージョン文字
        (set-face-background 'region                           "#0000CD") ; リージョン背景
-       (set-face-foreground 'modeline                         "#000000") ; モードライン文字
-       (set-face-background 'modeline                         "#BFBFBF") ; モードライン背景
        (set-face-foreground 'mode-line-inactive               "#CCCCCC") ; モードライン文字(非アクティブ)
        (set-face-background 'mode-line-inactive               "#4D4D4D") ; モードライン背景(非アクティブ)
        (set-face-foreground 'font-lock-comment-delimiter-face "#FF7F24") ; コメントデリミタ
@@ -21,6 +19,11 @@
        (set-face-background 'fringe                           "#1A1A1A") ; fringe背景
        (set-face-background 'hl-line                          "#333333") ; カレント行背景
        (set-face-foreground 'linum                            "#999999") ; 行番号文字
+
+       (cond ((and run-emacs24 (equal emacs-minor-version 2))
+              (set-face-foreground 'modeline                         "#000000") ; モードライン文字
+              (set-face-background 'modeline                         "#BFBFBF") ; モードライン背景
+              ))
        )
       ((and run-linux)
        (set-foreground-color                                  "#C1CDCD") ; 文字色
