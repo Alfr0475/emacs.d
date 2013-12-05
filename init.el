@@ -126,6 +126,61 @@
        (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
        (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
        (package-initialize)
+
+       ;; インストールされていなければ自動でインストールを行う
+       (require 'cl)
+       (defvar installing-package-list
+         '(
+           anzu
+           auto-async-byte-compile
+           auto-complete
+           browse-kill-ring
+           csharp-mode
+           dsvn
+           editorconfig
+           elscreen
+           foreign-regexp
+           fuzzy
+           gh
+           git-commit-mode
+           git-rebase-mode
+           helm
+           helm-dired-recent-dirs
+           helm-migemo
+           helm-open-github
+           init-loader
+           js2-mode
+           json-mode
+           logito
+           magit
+           markdown-mode
+           migemo
+           multi-term
+           open-junk-file
+           org
+           pcache
+           php-mode
+           popup
+           pos-tip
+           recentf-ext
+           revive
+           ruby-mode
+           ruby-block
+           ruby-electric
+           session
+           textile-mode
+           wgrep
+           yaml-mode
+           yasnippet
+           zencoding-mode
+           ))
+       (let ((not-installed (loop for x in installing-package-list
+                                  when (not (package-installed-p x))
+                                  collect x)))
+         (when not-installed
+           (package-refresh-contents)
+           (dolist (pkg not-installed)
+             (package-install pkg))))
        )
       )
 
