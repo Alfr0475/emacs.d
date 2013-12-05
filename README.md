@@ -22,112 +22,113 @@
 
 ### browse-kill-ring ###
 
-M-y
-browse-kill-ring起動
+`M-y`
+    browse-kill-ring起動
 
 ### helm ###
-C-h
-バックスペース
 
-TAB
-補完
+`C-h`
+    バックスペース
 
-C-c h
-helm起動
+`TAB`
+    補完
 
-C-x C-f
-デフォルトのhelm-find-fileをhelm-for-filesに変更
+`C-c h`
+    helm起動
 
-C-x b
-デフォルトのswitch-to-bufferをオリジナル定義に変更
+`C-x C-f`
+    デフォルトのhelm-find-fileをhelm-for-filesに変更
 
-C-z b
-elscreen-findをhelm-elscreenに変更
+`C-x b`
+    デフォルトのswitch-to-bufferをオリジナル定義に変更
 
-C-M-z
-helm-resume
+`C-z b`
+    elscreen-findをhelm-elscreenに変更
 
-M-x
-コマンドの実行をhelmに変更
+`C-M-z`
+    helm-resume
 
-M-y
-yankをhelm化
+`M-x`
+    コマンドの実行をhelmに変更
 
-C-v
-M-v
-前後のsourceに移動
+`M-y`
+    yankをhelm化
 
-C-z
-elscreenのprefixなので無効
+`C-v`
+`M-v`
+    前後のsourceに移動
+
+`C-z`
+    elscreenのprefixなので無効
 
 ### auto-complete ###
 
-C-n
-C-p
-補完メニューの操作
+`C-n`
+`C-p`
+    補完メニューの操作
 
 ### open-junk-file ###
 
-C-, C-,
-junkファイル作成
+`C-, C-,`
+    junkファイル作成
 
 ### org ###
 
-C-<return>
-現在と同じレベルの見出しを入力する
+`C-<return>`
+    現在と同じレベルの見出しを入力する
 
-C-c l
-ハイパーリンクの作成
+`C-c l`
+    ハイパーリンクの作成
 
 ### multi-term ###
 
-C-h
-バックスペース
+`C-h`
+    バックスペース
 
-C-y
-ペースト
+`C-y`
+    ペースト
 
-C-p
-C-n
-十字キー上下
+`C-p`
+`C-n`
+    十字キー上下
 
-C-v
-M-v
-ページ遷移
+`C-v`
+`M-v`
+    ページ遷移
 
 ### revive ###
 
-C-x S
-現在の状態を保存
+`C-x S`
+    現在の状態を保存
 
-C-x F
-レジューム
+`C-x F`
+    レジューム
 
 ### その他 ###
 
-C-h
-バックスペース
+`C-h`
+    バックスペース
 
-C-x C-h
-元々C-hに割り当てられていたhelp-command
+`C-x C-h`
+    元々C-hに割り当てられていたhelp-command
 
-C-x C-z
-サスペンドを無効
+`C-x C-z`
+    サスペンドを無効
 
-C-x C-c
-Emacsの終了を無効
+`C-x C-c`
+    Emacsの終了を無効
 
-C-c d
-時刻挿入
+`C-c d`
+    時刻挿入
 
-C-t
-ウィンドウ移動
+`C-t`
+    ウィンドウ移動
 
-C-a
-行頭、行のインデント位置を繰り返す
+`C-a`
+    行頭、行のインデント位置を繰り返す
 
-C-x C-j
-dired-jump
+`C-x C-j`
+    dired-jump
 
-M-C-g
-grep
+`M-C-g`
+    grep
