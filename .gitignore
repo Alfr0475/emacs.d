@@ -2,3 +2,9 @@
 /save-place
 /server
 /auto-save-list
+/recentf
+/session
+url/
+var/
+*~
+*.elc
