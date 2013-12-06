@@ -6,6 +6,7 @@
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
 ;; RSense
+(setq rsense-home (expand-file-name "~/contrib/rsense/"))
 (require 'rsense)
 
 (add-hook 'ruby-mode-hook
@@ -18,14 +19,9 @@
              (add-to-list 'ac-sources 'ac-source-rsense-constant)
              ))
 
-(setq rsense-rurema-home "~/.emacs.d/data/rurema/ruby-refm-1.9.3-dynamic-20120829") ; リファレンスパスの指定
-
-;; ruby-electric
-(require 'ruby-electric)
-(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
+(setq rsense-rurema-home "~/data/rurema/ruby-refm-1.9.3-dynamic-20120829") ; リファレンスパスの指定
 
 ;; ruby-block
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)    ; ミニバッファに表示し、かつオーバレイする
-
