@@ -6,8 +6,11 @@
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
 ;; RSense
-(setq rsense-home (expand-file-name "~/contrib/rsense/"))
-(require 'rsense)
+(cond ((and run-linux)
+       (setq rsense-home (expand-file-name "~/contrib/rsense/"))
+       (require 'rsense)
+       (setq rsense-rurema-home "~/data/rurema/ruby-refm-1.9.3-dynamic-20120829") ; リファレンスパスの指定
+))
 
 (add-hook 'ruby-mode-hook
           '(lambda ()
@@ -15,11 +18,11 @@
              (setq ruby-indent-level tab-width) ; インデントサイズ
              (setq ruby-deep-indent-paren-style nil) ; 引数とかを改行して並べた時にインデントを括弧に合わせない
 
-             (add-to-list 'ac-sources 'ac-source-rsense-method)
-             (add-to-list 'ac-sources 'ac-source-rsense-constant)
+             (cond ((and run-linux)
+                    (add-to-list 'ac-sources 'ac-source-rsense-method)
+                    (add-to-list 'ac-sources 'ac-source-rsense-constant)
+                    ))
              ))
-
-(setq rsense-rurema-home "~/data/rurema/ruby-refm-1.9.3-dynamic-20120829") ; リファレンスパスの指定
 
 ;; ruby-block
 (require 'ruby-block)
