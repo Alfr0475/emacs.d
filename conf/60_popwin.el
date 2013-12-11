@@ -10,4 +10,6 @@
                                       (" *auto-async-byte-compile*" :height 14 :noselect t)
                                       ("helm" :regexp t :height 0.4)
                                       ("*Google Translate*" :noselect t)
+                                      ("*Warnings*" :noselect t)
+                                      ("*Compile-Log*" :noselect t)
 ))
