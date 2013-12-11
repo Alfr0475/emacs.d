@@ -12,4 +12,5 @@
                                       ("*Google Translate*" :noselect t)
                                       ("*Warnings*" :noselect t)
                                       ("*Compile-Log*" :noselect t)
+                                      ("*magit-process*" :noselect t)
 ))
