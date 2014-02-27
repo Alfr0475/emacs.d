@@ -42,6 +42,21 @@
                          'cp932
                          '("ＭＳ ゴシック" . "unicode-bmp")) ; 機種依存文字
        )
+      ((and run-darwin run-emacs24 window-system)
+       ;; Mac環境でのGUI版Emacs24系
+       (set-face-attribute 'default nil
+                           :family "Monaco"
+                           :height 120)
+       (set-fontset-font "fontset-default"
+                         'japanese-jisx0208
+                         '("Hiragino Maru Gothic ProN")) ; 全角文字
+       (set-fontset-font "fontset-default"
+                         'katakana-jisx0201
+                         '("Hiragino Maru Gothic ProN")) ; 半角カタカナ
+       (set-fontset-font "fontset-default"
+                         'cp932
+                         '("Hiragino Maru Gothic ProN")) ; 機種依存文字
+       )
       ;; ((and window-system run-emacs22 run-w32)
       ;;  ;; Windows環境でのGUI版Emacs22系
       ;;  )
