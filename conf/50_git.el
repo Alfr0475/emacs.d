@@ -4,7 +4,13 @@
       ((and run-linux)
        (setq magit-git-executable "/usr/bin/git")
        )
+      ((and run-darwin)
+       ;; magitでコミットする際に新しいウィンドウを立ち上げないようにする設定
+       ;; http://qiita.com/dtan4/items/658a8a7ca06aa8c2da4c
+       (set-variable 'magit-emacsclient-executable "/usr/local/Cellar/emacs/24.3/bin/emacsclient")
+       )
       )
+
 
 (define-key global-map (kbd "C-x m") 'magit-status)
 
