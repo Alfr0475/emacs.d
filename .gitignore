@@ -11,3 +11,4 @@ var/
 /data/junk/*
 !/data/junk/.gitkeep
 /site-lisp/archives/*/archive-contents
+/data/navi2ch/*
