@@ -8,3 +8,6 @@ url/
 var/
 *~
 *.elc
+/data/junk/*
+!/data/junk/.gitkeep
+/site-lisp/archives/*/archive-contents
