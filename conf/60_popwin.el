@@ -15,5 +15,6 @@
                                       ("*magit-process*" :noselect t)
                                       ("*magit-diff*" :height 0.4)
                                       ("*Kill Ring*" :height 0.4)
+                                      ("*grep*" :height 0.4)
                                       ("*Help*" :noselect t)
 ))
