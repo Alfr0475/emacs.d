@@ -45,17 +45,17 @@
       ((and run-darwin run-emacs24 window-system)
        ;; Mac環境でのGUI版Emacs24系
        (set-face-attribute 'default nil
-                           :family "Monaco"
-                           :height 120)
+                           :family "Ricty for Powerline"
+                           :height 140)
        (set-fontset-font "fontset-default"
                          'japanese-jisx0208
-                         '("Hiragino Maru Gothic ProN")) ; 全角文字
+                         '("Ricty for Powerline")) ; 全角文字
        (set-fontset-font "fontset-default"
                          'katakana-jisx0201
-                         '("Hiragino Maru Gothic ProN")) ; 半角カタカナ
+                         '("Ricty for Powerline")) ; 半角カタカナ
        (set-fontset-font "fontset-default"
                          'cp932
-                         '("Hiragino Maru Gothic ProN")) ; 機種依存文字
+                         '("Ricty for Powerline")) ; 機種依存文字
        )
       ;; ((and window-system run-emacs22 run-w32)
       ;;  ;; Windows環境でのGUI版Emacs22系
