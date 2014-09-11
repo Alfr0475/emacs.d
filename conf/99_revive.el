@@ -3,4 +3,5 @@
 (autoload 'wipe "revive" "Wipe emacs" t)
 (define-key global-map (kbd "C-x S") 'save-current-configuration)
 (define-key global-map (kbd "C-x F") 'resume)
+(setq revive:configuration-file "~/.emacs.d/revive")
 (add-hook 'kill-emacs-hook 'save-current-configuration)
