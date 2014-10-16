@@ -30,7 +30,7 @@
  '(hl-line ((t (:background "#333333")))) ; カレント行
 
  ;; linum
- '(hl-line ((t (:foreground "#999999")))) ; 行番号
+ '(linum ((t (:foreground "#000000" :background "#999999")))) ; 行番号
 )
 
 ;;;###autoload
