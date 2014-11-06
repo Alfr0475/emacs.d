@@ -43,7 +43,9 @@ It is an enhanced version of `helm-for-buffers'."
 (define-key helm-map (kbd "C-v") 'helm-next-source)
 (define-key helm-map (kbd "M-v") 'helm-previous-source)
 
-(define-key helm-map (kbd "C-z") nil)   ; elscreenのprefixなのでnilに
+(cond ((and window-system)
+       (define-key helm-map (kbd "C-z") nil)   ; elscreenのprefixなのでnilに
+))
 
 ;; helm-migemo
 ;; helmにmigemoを使う
@@ -51,6 +53,8 @@ It is an enhanced version of `helm-for-buffers'."
 (require 'helm-migemo)
 (helm-migemize-command helm-c-source-files-in-current-dir)
 (helm-migemize-command helm-c-source-find-files)
+(helm-migemize-command helm-c-source-file-name-history)
+(helm-migemize-command helm-c-source-buffers-list)
 
 ;; helm-grep
 (require 'helm-grep)
