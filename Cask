@@ -1,10 +1,12 @@
 (source gnu)
 (source melpa)
 
+(depends-on "ac-html")
 (depends-on "ace-isearch")
 (depends-on "ace-jump-mode")
 (depends-on "anzu")
 (depends-on "apache-mode")
+(depends-on "apel")
 (depends-on "async")
 (depends-on "auto-async-byte-compile")
 (depends-on "auto-compile")
@@ -37,6 +39,7 @@
 (depends-on "google-translate")
 (depends-on "helm")
 (depends-on "helm-dired-recent-dirs")
+(depends-on "helm-gtags")
 (depends-on "helm-migemo")
 (depends-on "helm-open-github")
 (depends-on "helm-swoop")
@@ -95,3 +98,7 @@
         :git "https://github.com/suzuki/php-completion.git"
         :branch "develop"
         :files ("*.el" "phpcmp-index-of-*"))
+
+(depends-on "editorconfig"
+        :git "https://github.com/editorconfig/editorconfig-emacs.git"
+        :files ("*.el"))
