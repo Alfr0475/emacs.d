@@ -12,6 +12,9 @@
   (setq web-mode-css-indent-offset 4)    ; CSS
   (setq web-mode-code-indent-offset 4)   ; JavaScript,PHP
 
+  (setq web-mode-style-padding 4)       ; <style>
+  (setq web-mode-script-padding 4)      ; <script>
+
   (setq web-mode-enable-auto-pairing nil) ; 自動タグ閉じ
   (setq web-mode-enable-css-colorization nil) ; RGBをバックグラウンドに反映
 
