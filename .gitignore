@@ -14,3 +14,5 @@ var/
 /site-lisp/archives/*/archive-contents
 /data/navi2ch/*
 .cask/
+/tramp
+undo-tree/

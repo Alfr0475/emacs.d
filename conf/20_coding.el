@@ -41,8 +41,39 @@
        scroll-step 1)
 
 ;; linum-mode
+(require 'hlinum)
 (global-linum-mode t)                   ; バッファ中の行番号表示
 (setq linum-format "%5d")               ; 行番号書式
+
+;; undo-tree
+(require 'undo-tree)
+(global-undo-tree-mode t)
+(global-set-key (kbd "M-/") 'undo-tree-redo)
+
+(custom-set-variables
+ '(undo-tree-auto-save-history t)
+ '(undo-tree-history-directory-alist '(("". "~/.emacs.d/undo-tree")))
+ '(undo-tree-visualizer-timestamps t)
+ )
+(define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit)
+
+;; rainbow-delimiters
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode 1)        ; 括弧の対応を虹色にする
+
+;; rainbow-delimitersの色を強調する
+;; http://d.hatena.ne.jp/murase_syuka/20140815/1408061850
+(require 'cl-lib)
+(require 'color)
+(cl-loop
+ for index from 1 to rainbow-delimiters-max-face-count
+ do
+ (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
+   (cl-callf color-saturate-name (face-foreground face) 30)))
+
+;; git-gutter-fringe+
+(require 'git-gutter-fringe+)
+(global-git-gutter+-mode 1)
 
 
 ;; オリジナルのc-styleを定義

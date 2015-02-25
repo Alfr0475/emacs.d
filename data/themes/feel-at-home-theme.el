@@ -6,7 +6,7 @@
 
  ;; システム標準
  '(default     ((t (:background "#000000" :foreground "#C1CDCD"))))
- '(cursor      ((t (:foregound "#FFFFFF"))))
+ '(cursor      ((t (:foreground "#FFFFFF"))))
  '(bold        ((t (:bold nil))))
  '(bold-italic ((t (:italic nil :bold nil))))
 
@@ -31,6 +31,7 @@
 
  ;; linum
  '(linum ((t (:foreground "#000000" :background "#999999")))) ; 行番号
+ '(linum-highlight-face ((t (:foreground "#999999" :background "#000000"))))
 )
 
 ;;;###autoload
