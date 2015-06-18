@@ -53,6 +53,8 @@
 (global-auto-revert-mode 1)             ; バッファ自動再読み込み
 (setq delete-by-moving-to-trash t)      ; ファイル削除でごみ箱へ
 
+(exec-path-from-shell-initialize)       ; Shellのパスを引き継ぐ
+
 
 ;; C-x C-C で終了するキーバインドを無効にしたのでEmacsを終了するaliase追加
 (defalias 'exit-emacs 'save-buffers-kill-emacs)
