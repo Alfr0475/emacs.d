@@ -1,1 +1,1 @@
-(load "editorconfig")
+;; (load "editorconfig")

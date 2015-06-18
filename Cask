@@ -108,6 +108,6 @@
         :branch "develop"
         :files ("*.el" "phpcmp-index-of-*"))
 
-(depends-on "editorconfig"
-        :git "https://github.com/editorconfig/editorconfig-emacs.git"
-        :files ("*.el"))
+;; (depends-on "editorconfig"
+;;         :git "https://github.com/editorconfig/editorconfig-emacs.git"
+;;         :files ("*.el"))
