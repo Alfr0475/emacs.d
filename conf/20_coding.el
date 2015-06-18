@@ -56,10 +56,11 @@
  '(undo-tree-visualizer-timestamps t)
  )
 (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit)
+(define-key undo-tree-visualizer-mode-map (kbd "RET") 'undo-tree-visualizer-quit)
 
 ;; rainbow-delimiters
 (require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode 1)        ; 括弧の対応を虹色にする
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode) ; 括弧の対応を虹色にする
 
 ;; rainbow-delimitersの色を強調する
 ;; http://d.hatena.ne.jp/murase_syuka/20140815/1408061850
@@ -74,6 +75,15 @@
 ;; git-gutter-fringe+
 (require 'git-gutter-fringe+)
 (global-git-gutter+-mode 1)
+
+
+;; dirtree
+(require 'dirtree)
+(require 'eproject)
+(defun ep-dirtree ()
+  (interactive)
+  (dirtree eproject-root t))
+(global-set-key (kbd "C-c C-j") 'ep-dirtree)
 
 
 ;; オリジナルのc-styleを定義
