@@ -1,11 +1,6 @@
 ;;----------------------------------------------------------------------
 ;; Emacs Configuration
 ;;----------------------------------------------------------------------
-;; Author           : $Author: koga $
-;; Created On       : 2010-05-13 17:13:00
-;; Last Modified On : $Date: 2011-05-26 18:37:58 +0900 (木, 26 5 2011) $
-;; Revision         : $Rev: 17 $
-;;----------------------------------------------------------------------
 
 
 ;;----------------------------------------------------------------------
@@ -61,34 +56,65 @@
 ;;----------------------------------------------------------------------
 ;; package configuration
 ;;----------------------------------------------------------------------
-(cond ((and run-emacs24)
-       (require 'cask)
-       (cask-initialize)
-       (require 'pallet)
- ))
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
+
+;; Emacsのバージョンによってインストール先を変える
+;; http://d.hatena.ne.jp/tarao/20150221/1424518030#tips-package-directory
+(let ((versioned-dir (locate-user-emacs-file (concat "packages/" emacs-version))))
+  (setq el-get-dir (expand-file-name "el-get" versioned-dir)
+        package-user-dir (expand-file-name "elpa" versioned-dir))
+
+  (setq load-path
+        (append
+         (list
+          (expand-file-name "~/.emacs.d/packages")
+          (expand-file-name (concat versioned-dir "/el-get/el-get"))
+          (expand-file-name versioned-dir)
+          )
+         load-path)))
+
+
+;; El-Getがインストールされていなければダウンロードしてインストール
+;; http://d.hatena.ne.jp/tarao/20150221/1424518030#el-get-setup
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+;; パッケージ毎に独立した設定ファイルを使う
+;; http://d.hatena.ne.jp/tarao/20150221/1424518030#el-get-package-config
+(setq el-get-user-package-directory
+      (locate-user-emacs-file (format "package-conf.d/%s" emacs-version)))
+
+;; El-Get install packages
+(when (load (format "install-packages-%s" emacs-version) nil t))
 
 
 ;;----------------------------------------------------------------------
 ;; load-path configuration
 ;;----------------------------------------------------------------------
-(setq load-path
-      (append
-       (list
-        (expand-file-name "~/.emacs.d/elisp")
-        (expand-file-name "~/.emacs.d/elisp/library")
-        (expand-file-name "~/.emacs.d/elisp/library/emu")
-        (expand-file-name "~/.emacs.d/elisp/mode")
-        (expand-file-name "~/.emacs.d/elisp/mode/bat")
-        (expand-file-name "~/.emacs.d/elisp/mode/pukiwiki")
-        )
-       load-path))
+;; (setq load-path
+;;       (append
+;;        (list
+;;         (expand-file-name "~/.emacs.d/elisp")
+;;         (expand-file-name "~/.emacs.d/elisp/library")
+;;         (expand-file-name "~/.emacs.d/elisp/library/emu")
+;;         (expand-file-name "~/.emacs.d/elisp/mode")
+;;         (expand-file-name "~/.emacs.d/elisp/mode/bat")
+;;         (expand-file-name "~/.emacs.d/elisp/mode/pukiwiki")
+;;         )
+;;        load-path))
 
 
 ;;----------------------------------------------------------------------
 ;; load settings
 ;;----------------------------------------------------------------------
 (require 'init-loader)
-(init-loader-load "~/.emacs.d/conf")
+(setq init-loader-show-log-after-init 'error-only) ; ログにエラーのみを表示
+(init-loader-load (locate-user-emacs-file (format "local-conf.d/%s" emacs-version)))
 
 
 ;;----------------------------------------------------------------------
@@ -98,3 +124,6 @@
 
 (unless (server-running-p)              ; 複数サーバー起動を防ぐ
   (server-start))
+
+
+(provide 'init)

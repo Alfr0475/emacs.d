@@ -1,3 +1,4 @@
+!*.gitkeep
 /ac-comphist.dat
 /save-place
 /server
@@ -16,3 +17,5 @@ var/
 .cask/
 /tramp
 undo-tree/
+tmp/
+packages/

@@ -1,0 +1,6 @@
+(require 'helm-match-plugin nil t)
+(require 'helm-migemo)
+(helm-migemize-command helm-c-source-files-in-current-dir)
+(helm-migemize-command helm-c-source-find-files)
+(helm-migemize-command helm-c-source-file-name-history)
+(helm-migemize-command helm-c-source-buffers-list)
