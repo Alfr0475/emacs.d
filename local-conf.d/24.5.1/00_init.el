@@ -55,6 +55,8 @@
 
 (exec-path-from-shell-initialize)       ; Shellのパスを引き継ぐ
 
+(setq auto-save-list-file-prefix "~/.emacs.d/tmp/auto-save-list/.saves-")
+(setq tramp-persistency-file-name "~/.emacs.d/tmp/tramp")
 
 ;; C-x C-C で終了するキーバインドを無効にしたのでEmacsを終了するaliase追加
 (defalias 'exit-emacs 'save-buffers-kill-emacs)

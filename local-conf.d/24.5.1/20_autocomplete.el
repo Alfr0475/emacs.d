@@ -2,6 +2,8 @@
 ;; (require 'auto-complete-yasnippet)
 (require 'pos-tip)
 
+(setq ac-comphist-file "~/.emacs.d/tmp/ac-comphist.dat")
+
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/data/auto-complete/dict")
 
 (ac-config-default)

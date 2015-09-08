@@ -24,6 +24,9 @@
 (el-get-bundle helm-open-github)
 (el-get-bundle helm-projectile)
 (el-get-bundle helm-swoop)
+(el-get-bundle helm-ghq)
+(el-get-bundle helm-helm-commands)
+(el-get-bundle helm-descbinds)
 
 ;; major mode
 (el-get-bundle actionscript-mode)
@@ -36,7 +39,7 @@
 (el-get-bundle css-mode)
 (el-get-bundle csv-mode)
 (el-get-bundle elpa:gitignore-mode)
-(el-get-bundle elpa:git-commit-mode)
+(el-get-bundle rafl/git-commit-mode)
 (el-get-bundle gitconfig-mode)
 (el-get-bundle go-mode)
 (el-get-bundle gradle-mode)
@@ -68,8 +71,8 @@
 (el-get-bundle browse-kill-ring)        ; kill-ringの内容を一覧表示
 (el-get-bundle dirtree)                 ; ディレクトリツリー表示
 (el-get-bundle drag-stuff)              ; 行/Region/単語などをドラッグできるように
-(el-get-bundle elpa:git-gutter+)
-(el-get-bundle elpa:git-gutter-fringe+) ; fringeにgit情報を表示
+(el-get-bundle fringe-helper)
+(el-get-bundle git-gutter-fringe)       ; fringeにgit情報を表示
 (el-get-bundle hlinum)                  ; linum-modeに現在行を強調表示
 (el-get-bundle elpa:htmlize)            ; ソースコードをHTMLとして出力する
 (el-get-bundle idle-highlight-mode)     ; カーソルが乗っているシンボルをハイライト
@@ -115,9 +118,14 @@
 
 ;; flycheck
 (el-get-bundle elpa:flycheck)           ; シンタックスチェック
+(el-get-bundle elpa:flycheck-pos-tip)
 
 ;; org-mode
 (el-get-bundle org-mode)
+
+;; magit
+(el-get-bundle magit)
+(el-get-bundle magit-gitflow)
 
 ;; application
 (el-get-bundle navi2ch)                 ; 2chブラウザ
