@@ -27,6 +27,15 @@
            (equal system-type 'ms-dos))))
 (defvar run-darwin (equal system-type 'darwin))
 
+;; 実行OS名設定
+  (cond
+    (run-w32
+     (setq run-os-name "windows"))
+    ((or run-unix run-linux run-cygwin)
+     (setq run-os-name "linux"))
+    (run-darwin
+     (setq run-os-name "mac")))
+
 ;; Emacsの種類とバージョンを判別
 (defvar run-emacs20
   (and (equal emacs-major-version 20)
@@ -59,18 +68,18 @@
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
-;; Emacsのバージョンによってインストール先を変える
+;; OSによってインストール先を変える
 ;; http://d.hatena.ne.jp/tarao/20150221/1424518030#tips-package-directory
-(let ((versioned-dir (locate-user-emacs-file (concat "packages/" emacs-version))))
-  (setq el-get-dir (expand-file-name "el-get" versioned-dir)
-        package-user-dir (expand-file-name "elpa" versioned-dir))
+(let ((run-os-dir (locate-user-emacs-file (format "packages/%s-%s" run-os-name window-system))))
+  (setq el-get-dir (expand-file-name "el-get" run-os-dir)
+        package-user-dir (expand-file-name "elpa" run-os-dir))
 
   (setq load-path
         (append
          (list
           (expand-file-name "~/.emacs.d/packages")
-          (expand-file-name (concat versioned-dir "/el-get/el-get"))
-          (expand-file-name versioned-dir)
+          (expand-file-name (concat run-os-dir "/el-get/el-get"))
+          (expand-file-name run-os-dir)
           )
          load-path)))
 
@@ -84,13 +93,8 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-;; パッケージ毎に独立した設定ファイルを使う
-;; http://d.hatena.ne.jp/tarao/20150221/1424518030#el-get-package-config
-(setq el-get-user-package-directory
-      (locate-user-emacs-file (format "package-conf.d/%s" emacs-version)))
-
 ;; El-Get install packages
-(when (load (format "install-packages-%s" emacs-version) nil t))
+(when (load (format "install-packages-%s-%s" run-os-name window-system) nil t))
 
 
 ;;----------------------------------------------------------------------
@@ -114,7 +118,7 @@
 ;;----------------------------------------------------------------------
 (require 'init-loader)
 (setq init-loader-show-log-after-init 'error-only) ; ログにエラーのみを表示
-(init-loader-load (locate-user-emacs-file (format "local-conf.d/%s" emacs-version)))
+(init-loader-load (locate-user-emacs-file (format "conf.d/%s-%s" run-os-name window-system)))
 
 
 ;;----------------------------------------------------------------------

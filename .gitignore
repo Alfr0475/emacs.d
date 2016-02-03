@@ -19,3 +19,4 @@ var/
 undo-tree/
 tmp/
 packages/
+el-get/

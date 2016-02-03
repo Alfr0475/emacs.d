@@ -25,6 +25,8 @@
 ;; grep
 (define-key global-map (kbd "M-C-g") 'grep)
 
+(define-key global-map [165] [92])
+
 ;; Mac環境でAltとCommandを入れ替え
 ;; (cond ((and run-darwin)
 ;;        (setq ns-command-modifier (quote meta))
