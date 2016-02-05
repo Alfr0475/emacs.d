@@ -28,13 +28,20 @@
 (defvar run-darwin (equal system-type 'darwin))
 
 ;; 実行OS名設定
-  (cond
-    (run-w32
-     (setq run-os-name "windows"))
-    ((or run-unix run-linux run-cygwin)
-     (setq run-os-name "linux"))
-    (run-darwin
-     (setq run-os-name "mac")))
+(cond
+ (run-w32
+  (setq run-os-name "windows"))
+ ((or run-unix run-linux run-cygwin)
+  (setq run-os-name "linux"))
+ (run-darwin
+  (setq run-os-name "mac")))
+
+;; WindowSystem名設定
+(cond
+ ((null window-system)
+  (setq run-window-system-name "terminal"))
+ (t
+  (setq run-window-system-name window-system)))
 
 ;; Emacsの種類とバージョンを判別
 (defvar run-emacs20
@@ -70,7 +77,7 @@
 
 ;; OSによってインストール先を変える
 ;; http://d.hatena.ne.jp/tarao/20150221/1424518030#tips-package-directory
-(let ((run-os-dir (locate-user-emacs-file (format "packages/%s-%s" run-os-name window-system))))
+(let ((run-os-dir (locate-user-emacs-file (format "packages/%s-%s" run-os-name run-window-system-name))))
   (setq el-get-dir (expand-file-name "el-get" run-os-dir)
         package-user-dir (expand-file-name "elpa" run-os-dir))
 
@@ -94,7 +101,7 @@
     (eval-print-last-sexp)))
 
 ;; El-Get install packages
-(when (load (format "install-packages-%s-%s" run-os-name window-system) nil t))
+(when (load (format "install-packages-%s-%s" run-os-name run-window-system-name) nil t))
 
 
 ;;----------------------------------------------------------------------
@@ -118,7 +125,7 @@
 ;;----------------------------------------------------------------------
 (require 'init-loader)
 (setq init-loader-show-log-after-init 'error-only) ; ログにエラーのみを表示
-(init-loader-load (locate-user-emacs-file (format "conf.d/%s-%s" run-os-name window-system)))
+(init-loader-load (locate-user-emacs-file (format "conf.d/%s-%s" run-os-name run-window-system-name)))
 
 
 ;;----------------------------------------------------------------------
