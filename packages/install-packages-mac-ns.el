@@ -102,6 +102,7 @@
 (el-get-bundle undo-tree)               ; undoをバージョン管理する
 (el-get-bundle undohist)                ; undoの永続化
 (el-get-bundle wgrep)                   ; grepの結果で直接編集できる
+(el-get-bundle which-key)               ; 次のキープレフィックスを教えてくれる
 (el-get-bundle yasnippet)               ; スニペット管理
 
 ;; auto complete

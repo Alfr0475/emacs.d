@@ -182,6 +182,21 @@
   (let ((coding-system-for-read 'utf-8))
     ad-do-it))
 
+;; grep結果を編集して反映させる
+(require 'wgrep)
+(setq wgrep-change-readonly-file t)
+(setq wgrep-enable-key "e")
+
+;;------------------------------------------------------------------------------
+;; which-key
+;;------------------------------------------------------------------------------
+;; 3つの表示方法どれか1つ選ぶ
+(which-key-setup-side-window-bottom)       ; ミニバッファ
+;; (which-key-setup-side-window-right)        ; 右端
+;; (which-key-setup-side-window-right-bottom) ; 両方使う
+
+(which-key-mode 1)
+
 ;;------------------------------------------------------------------------------
 ;; migemo
 ;;------------------------------------------------------------------------------
