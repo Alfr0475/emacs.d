@@ -41,10 +41,7 @@ It is an enhanced version of `helm-for-buffers'."
 (global-set-key (kbd "C-M-z") 'helm-resume) ; 直前のhelm実行結果に復帰する
 (global-set-key (kbd "M-x") 'helm-M-x)      ; コマンド実行をhelmに変更
 (global-set-key (kbd "M-y") 'helm-show-kill-ring) ; yankをhelm化
-
-;; 前後のsourceに移動
-(define-key helm-map (kbd "C-v") 'helm-next-source)
-(define-key helm-map (kbd "M-v") 'helm-previous-source)
+(global-set-key (kbd "C-x C-g") 'helm-ghq)        ; ghqのhelmインターフェイス
 
 ;;------------------------------------------------------------------------------
 ;; helm-grep
@@ -54,10 +51,10 @@ It is an enhanced version of `helm-for-buffers'."
 ;;------------------------------------------------------------------------------
 ;; helm-gtags
 ;;------------------------------------------------------------------------------
-(define-key global-map (kbd "<f3>") 'helm-gtags-find-tag)
-(define-key global-map (kbd "C-S-g") 'helm-gtags-find-rtag)
+(define-key global-map (kbd "<f3>") 'helm-gtags-find-tag)    ; 関数の定義場所
+(define-key global-map (kbd "S-<f3>") 'helm-gtags-pop-stack) ; ひとつ戻る
+(define-key global-map (kbd "C-S-g") 'helm-gtags-find-rtag)  ; 関数の参照場所
 
-;; gtags自動更新
-(setq helm-gtags-auto-update t)
+(setq helm-gtags-auto-update t)         ; バッファを保存した時にTAGファイル更新
 
 (provide '10_helm)
