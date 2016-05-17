@@ -84,7 +84,7 @@
   (setq load-path
         (append
          (list
-          (expand-file-name "~/.emacs.d/packages")
+          (expand-file-name (concat user-emacs-directory  "packages"))
           (expand-file-name (concat run-os-dir "/el-get/el-get"))
           (expand-file-name run-os-dir)
           )
@@ -107,17 +107,12 @@
 ;;----------------------------------------------------------------------
 ;; load-path configuration
 ;;----------------------------------------------------------------------
-;; (setq load-path
-;;       (append
-;;        (list
-;;         (expand-file-name "~/.emacs.d/elisp")
-;;         (expand-file-name "~/.emacs.d/elisp/library")
-;;         (expand-file-name "~/.emacs.d/elisp/library/emu")
-;;         (expand-file-name "~/.emacs.d/elisp/mode")
-;;         (expand-file-name "~/.emacs.d/elisp/mode/bat")
-;;         (expand-file-name "~/.emacs.d/elisp/mode/pukiwiki")
-;;         )
-;;        load-path))
+(setq load-path
+      (append
+       (list
+        (expand-file-name (concat user-emacs-directory "data/c-style"))
+        )
+       load-path))
 
 
 ;;----------------------------------------------------------------------

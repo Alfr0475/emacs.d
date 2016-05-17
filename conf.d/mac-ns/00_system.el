@@ -7,9 +7,11 @@
 ;;------------------------------------------------------------------------------
 (prefer-coding-system 'utf-8-unix)      ; デフォルトの文字コード
 (set-default-coding-systems 'utf-8)     ; デフォルトの文字コード
-(set-file-name-coding-system 'utf-8)    ; ファイル名
 (set-keyboard-coding-system 'utf-8)     ; キーボード
 (set-terminal-coding-system 'utf-8)     ; ターミナル
+
+(require 'ucs-normalize)
+(set-file-name-coding-system 'utf-8-hfs) ; ファイル名(Mac日本語の濁音/半濁音対応)
 
 (set-default 'buffer-file-coding-system 'utf-8-unix) ; バッファー
 

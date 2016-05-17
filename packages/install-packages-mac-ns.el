@@ -34,7 +34,7 @@
 (el-get-bundle cmd-mode)
 (el-get-bundle cperl-mode)
 (el-get-bundle crontab-mode)
-(el-get-bundle csharp-mode)
+(el-get-bundle josteink/csharp-mode)
 (el-get-bundle css-mode)
 (el-get-bundle csv-mode)
 (el-get-bundle elpa:gitignore-mode)
@@ -46,7 +46,7 @@
 (el-get-bundle json-mode)
 (el-get-bundle markdown-mode)
 (el-get-bundle nginx-mode)
-(el-get-bundle php-mode)
+(el-get-bundle ejmr/php-mode :branch "v1.13.5")
 (el-get-bundle ruby-mode)
 (el-get-bundle smarty-mode)
 (el-get-bundle ssh-config-mode)
@@ -83,6 +83,7 @@
 (el-get-bundle json-snatcher)
 (el-get-bundle migemo)                  ; migemoのEmacs版
 (el-get-bundle multiple-cursors)        ; 複数カーソル
+(el-get-bundle pcre2el)                 ; Emacsの正規表現をPCREへ変換
 (el-get-bundle perl-completion)
 (el-get-bundle php-completion)
 (el-get-bundle popup)                   ; ポップアップメニューを出す
@@ -123,6 +124,10 @@
 (el-get-bundle elpa:flycheck)           ; シンタックスチェック
 (el-get-bundle elpa:flycheck-pos-tip)
 
+;; flymake
+(el-get-bundle flymake)                 ; シンタックスチェック
+(el-get-bundle flymake-for-csharp)
+
 ;; org-mode
 (el-get-bundle org-mode)
 
@@ -132,7 +137,7 @@
 
 ;; application
 (el-get-bundle navi2ch)                 ; 2chブラウザ
-(el-get-bundle omnisharp-mode)
+(el-get-bundle OmniSharp/omnisharp-emacs)
 (el-get-bundle open-junk-file)
 (el-get-bundle google-translate)
 (el-get-bundle multi-term)
