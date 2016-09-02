@@ -11,7 +11,6 @@
 (add-hook 'php-mode-hook
           '(lambda ()
              (c-set-style "c-style-php") ; オリジナルのスタイルを使用
-             ;;(set-original-c-style-php) ; オリジナルのスタイルを使用
              (setq comment-start "// ")
              (setq comment-end   "")
              (setq comment-start-skip "// *")
@@ -23,6 +22,7 @@
              (when (require 'auto-complete nil t)
                (make-variable-buffer-local 'ac-sources)
                (add-to-list ac-sources '(
+                                         ac-source-php
                                          ac-source-php-completion
                                          ac-source-words-in-same-mode-buffers
                                          ac-source-filename
@@ -78,8 +78,6 @@
 
   (define-key js2-mode-map "\C-i" 'indent-and-back-to-indentation)
   (define-key js2-mode-map "\C-m" 'newline-and-indent)
-
-  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
   ;; ejacs設定
   (autoload 'js-console "js-console" nil t)
@@ -172,10 +170,6 @@
 (require 'web-mode)
 (require 'ac-html)
 
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.ctp\\'" . web-mode))
-
 (defun web-mode-hook ()
   (add-to-list 'ac-modes 'web-mode)
 
@@ -208,9 +202,6 @@
 ;;------------------------------------------------------------------------------
 ;; Shell Script
 ;;------------------------------------------------------------------------------
-(add-to-list 'auto-mode-alist '("\\.bash\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
-
 (add-hook 'sh-mode-hook
           '(lambda ()
              (c-set-style "original-style")
@@ -221,31 +212,26 @@
 ;; batch
 ;;------------------------------------------------------------------------------
 (require 'cmd-mode)
-(add-to-list 'auto-mode-alist '("\\.[bB][aA][tT]$" . cmd-mode))
 
 ;;------------------------------------------------------------------------------
 ;; markdown
 ;;------------------------------------------------------------------------------
 (require 'markdown-mode)
-(setq auto-mode-alist (cons '("\\.md" . gfm-mode) auto-mode-alist))
 
 ;;------------------------------------------------------------------------------
 ;; textile
 ;;------------------------------------------------------------------------------
 (require 'textile-mode)
-(add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode))
 
 ;;------------------------------------------------------------------------------
 ;; yaml
 ;;------------------------------------------------------------------------------
 (require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;;------------------------------------------------------------------------------
 ;; org
 ;;------------------------------------------------------------------------------
 (require 'org-install)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (setq org-log-done t)
 
 ;; メモファイルの保存先

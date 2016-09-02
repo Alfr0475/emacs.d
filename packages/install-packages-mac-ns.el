@@ -26,6 +26,7 @@
 (el-get-bundle helm-ghq)
 (el-get-bundle helm-helm-commands)
 (el-get-bundle helm-descbinds)
+(el-get-bundle helm-git-grep)
 
 ;; major mode
 (el-get-bundle actionscript-mode)
@@ -46,7 +47,8 @@
 (el-get-bundle json-mode)
 (el-get-bundle markdown-mode)
 (el-get-bundle nginx-mode)
-(el-get-bundle ejmr/php-mode :branch "v1.13.5")
+;(el-get-bundle ejmr/php-mode :branch "v1.13.5")
+(el-get-bundle ejmr/php-mode)
 (el-get-bundle ruby-mode)
 (el-get-bundle smarty-mode)
 (el-get-bundle ssh-config-mode)
@@ -92,6 +94,7 @@
 (el-get-bundle popwin)                  ; 指定したバッファをポップアップウィンドウ化
 (el-get-bundle projectile)              ; プロジェクト管理
 (el-get-bundle rainbow-delimiters)      ; 括弧に段階を付けて色付け
+(el-get-bundle rainbow-mode)            ; #FFFFFF等に色を付ける
 (el-get-bundle recentf-ext)             ; recentfでディレクトリも扱う
 (el-get-bundle rsense)                  ; Rubyの開発援助ツール
 (el-get-bundle ruby-block)              ; Rubyのendに対応する行をハイライトする
@@ -104,6 +107,7 @@
 (el-get-bundle undohist)                ; undoの永続化
 (el-get-bundle wgrep)                   ; grepの結果で直接編集できる
 (el-get-bundle which-key)               ; 次のキープレフィックスを教えてくれる
+(el-get-bundle whitespace)              ; タブや行末空白の可視化
 (el-get-bundle yasnippet)               ; スニペット管理
 
 ;; auto complete
@@ -139,7 +143,7 @@
 (el-get-bundle navi2ch)                 ; 2chブラウザ
 (el-get-bundle OmniSharp/omnisharp-emacs)
 (el-get-bundle open-junk-file)
-(el-get-bundle google-translate)
+(el-get-bundle atykhonov/google-translate :branch "v0.11.10")
 (el-get-bundle multi-term)
 (el-get-bundle eproject)
 

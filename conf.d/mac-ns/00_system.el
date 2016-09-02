@@ -36,7 +36,12 @@
 (line-number-mode t)                    ; カーソル行表示
 (column-number-mode t)                  ; カーソル列表示
 (blink-cursor-mode 0)                   ; カーソル点滅表示
-(setq next-screen-context-lines 1)      ; 画面スクロール時の重複行数
+
+;; スクロール系
+(setq next-screen-context-lines 2)       ; 画面スクロール時の重複行数
+(setq scroll-margin 5)                   ; 画面端に到達する前に画面がスクロールする
+(setq scroll-preserve-screen-position t) ; スクロール時になるべくカーソル位置を変えない
+
 (exec-path-from-shell-initialize)       ; Shellのパスを引き継ぐ
 
 (setq auto-save-list-file-prefix "~/.emacs.d/tmp/auto-save-list/.saves-")

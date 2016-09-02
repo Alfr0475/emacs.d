@@ -74,3 +74,43 @@
      (set-face-background 'magit-diff-file-header "#404040")
      (set-face-background 'magit-diff-hunk-header "#404040")
      ))
+
+;;------------------------------------------------------------------------------
+;; Google Translate
+;; http://qiita.com/styzo/items/72197ad6717eb9266315
+;;------------------------------------------------------------------------------
+(require 'google-translate)
+(require 'google-translate-default-ui)
+(defvar google-translate-japanese-chars
+  "[ぁ-んァ-ヶ々〇〻\u3220-\u3244\u3280-\u32B0\u3400-\u9FFF\uF900-\uFAFF\U00020000-\U0002FFFF]"
+  "これらの文字が含まれているときは日本語とみなす") ;いい加減
+
+(defun google-translate-get-string (arg)
+  (cond ((stringp arg) arg)
+        ((= arg 4)                      ; C-u
+         (thing-at-point 'paragraph))
+        ((= arg 16)                     ; C-u C-u
+         (thing-at-point 'word))
+        ((= arg 64)
+         (read-string "Google Translate: "))
+        ((use-region-p)                 ; リージョン指定
+         (buffer-substring (region-beginning) (region-end)))
+        (t                              ; デフォルト
+         (thing-at-point 'sentence))))
+
+(defun google-translate-enja-or-jaen (arg)
+  "regionか現在位置の単語を翻訳する。C-u付きでquery指定も可能"
+  (interactive "p")
+  (let* ((string (google-translate-get-string arg))
+         (japanesep (string-match
+                     google-translate-japanese-chars
+                     string)))
+    (run-at-time 0.1 nil 'deactivate-mark)
+    (google-translate-translate
+     (if japanesep "ja" "en")
+     (if japanesep "en" "ja")
+     string)))
+
+(push '("*Google Translate*" :height 0.5 :stick t) popwin:special-display-config)
+
+(global-set-key (kbd "C-M-t") 'google-translate-enja-or-jaen)

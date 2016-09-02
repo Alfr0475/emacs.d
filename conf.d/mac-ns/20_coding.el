@@ -1,21 +1,15 @@
-;; create face
-(defface custom-face-double-byte-space '((t (:background "gray"))) nil) ; 全角スペース
-(defface custom-face-tab-string '((t (:background "gray26"))) nil) ; タブ文字
-(defface custom-face-eol-space '((t (:foreground "SteelBlue" :underline t))) nil) ; 行末スペース
-(defvar custom-face-double-byte-space 'custom-face-double-byte-space)
-(defvar custom-face-tab-string 'custom-face-tab-string)
-(defvar custom-face-eol-space 'custom-face-eol-space)
+(require 'whitespace)
+(setq whitespace-style '(face           ; faceで可視化
+                         trailing       ; 行末
+                         tabs           ; タブ
+                         space-mark
+                         tab-mark
+                         ))
 
-;; tab/space set color
-(defadvice font-lock-mode (before my-font-lock-mode ())
-  (font-lock-add-keywords
-   major-mode
-   '(("\t" 0 custom-face-tab-string append)
-     ("　" 0 custom-face-double-byte-space append)
-     ("[ \t]+$" 0 custom-face-eol-space append)
-     )))
-(ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
-(ad-activate 'font-lock-mode)
+(setq whitespace-display-mappings
+      '((?\t [?\u00BB ?\t] [?\\ ?\t])))
+
+(global-whitespace-mode 1)
 
 ;; paren
 (show-paren-mode t)                     ; 対応括弧のハイライト

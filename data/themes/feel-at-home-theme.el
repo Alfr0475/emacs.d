@@ -32,6 +32,10 @@
  ;; linum
  '(linum ((t (:foreground "#000000" :background "#999999")))) ; 行番号
  '(linum-highlight-face ((t (:foreground "#999999" :background "#000000"))))
+
+ ;; whitespace
+ '(whitespace-tab      ((t (:background "#424242")))) ; タブ
+ '(whitespace-trailing ((t (:foreground "#4682B4" :underline t)))) ; タブ
 )
 
 ;;;###autoload
