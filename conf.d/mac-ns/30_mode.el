@@ -15,6 +15,7 @@
              (setq comment-end   "")
              (setq comment-start-skip "// *")
 
+             (rainbow-mode t)
              ;; auto-completionのphp用設定
              (require 'php-completion)
              (php-completion-mode t)
@@ -185,6 +186,8 @@
 
   (setq indent-tabs-mode t)
 
+  (rainbow-mode t)
+
   (setq web-mode-ac-sources-alist
         '(("css" . (ac-source-css-property))
           ("html" . (ac-source-html-attribute-value
@@ -227,6 +230,18 @@
 ;; yaml
 ;;------------------------------------------------------------------------------
 (require 'yaml-mode)
+
+;;------------------------------------------------------------------------------
+;; css
+;;------------------------------------------------------------------------------
+(require css-mode)
+(add-hook 'css-mode-hook 'rainbow-mode)
+
+;;------------------------------------------------------------------------------
+;; scss
+;;------------------------------------------------------------------------------
+(require scss-mode)
+(add-hook 'scss-mode-hook 'rainbow-mode)
 
 ;;------------------------------------------------------------------------------
 ;; org
