@@ -103,6 +103,7 @@
 (el-get-bundle smartparens)             ; 括弧自動挿入や選択範囲を括弧で囲む
 (el-get-bundle smex)                    ; M-xを曖昧マッチ
 (el-get-bundle sql-completion)
+(el-get-bundle tabbar)                  ; タブエディタ化
 (el-get-bundle undo-tree)               ; undoをバージョン管理する
 (el-get-bundle undohist)                ; undoの永続化
 (el-get-bundle wgrep)                   ; grepの結果で直接編集できる
