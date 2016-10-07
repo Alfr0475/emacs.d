@@ -37,6 +37,11 @@
 (column-number-mode t)                  ; カーソル列表示
 (blink-cursor-mode 0)                   ; カーソル点滅表示
 
+;; 改行コード表示
+(setq eol-mnemonic-dos "(CRLF)")
+(setq eol-mnemonic-mac "(CR)")
+(setq eol-mnemonic-unix "(LF)")
+
 ;; スクロール系
 (setq next-screen-context-lines 2)       ; 画面スクロール時の重複行数
 (setq scroll-margin 5)                   ; 画面端に到達する前に画面がスクロールする
