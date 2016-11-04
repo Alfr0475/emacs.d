@@ -36,7 +36,7 @@
 (el-get-bundle cperl-mode)
 (el-get-bundle crontab-mode)
 (el-get-bundle josteink/csharp-mode)
-(el-get-bundle css-mode)
+;;(el-get-bundle css-mode)
 (el-get-bundle csv-mode)
 (el-get-bundle elpa:gitignore-mode)
 (el-get-bundle rafl/git-commit-mode)
@@ -77,7 +77,7 @@
 (el-get-bundle elpa:git-gutter+)
 (el-get-bundle elpa:git-gutter-fringe)  ; fringeにgit情報を表示
 (el-get-bundle elpa:git-gutter-fringe+) ; fringeにgit情報を表示
-(el-get-bundle hlinum)                  ; linum-modeに現在行を強調表示
+(el-get-bundle elpa:hlinum)             ; linum-modeに現在行を強調表示
 (el-get-bundle elpa:htmlize)            ; ソースコードをHTMLとして出力する
 (el-get-bundle idle-highlight-mode)     ; カーソルが乗っているシンボルをハイライト
 (el-get-bundle java-complete)
