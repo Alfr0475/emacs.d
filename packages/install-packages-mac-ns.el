@@ -12,12 +12,13 @@
 
 ;; system
 (el-get-bundle prodigy)                 ; Emacsでプロセスを管理する
-(el-get-bundle use-package)             ; Emacs設定用のマクロ
+(el-get-bundle use-package :depends (diminish)) ; Emacs設定用のマクロ
 (el-get-bundle exec-path-from-shell)    ; 環境変数のpathを引き継ぐ
 ;;(el-get-bundle auto-async-byte-compile) ; 自動バイトコンパイル
 
 ;; helm
 (el-get-bundle helm)
+(el-get-bundle helm-ag)
 (el-get-bundle helm-dired-recent-dirs)
 (el-get-bundle helm-gtags)
 (el-get-bundle helm-open-github)
@@ -65,18 +66,18 @@
 ;; coding support
 (el-get-bundle ace-jump-mode)           ; 画面内の単語に飛ぶ
 (el-get-bundle ace-isearch)             ; ace-jump-mode + isearch + helm-swoop
+(el-get-bundle ag)
+(el-get-bundle align)
 (el-get-bundle anzu)                    ; 検索のマッチ数表示
 (el-get-bundle auto-highlight-symbol)   ; カーソルが乗っているシンボルをハイライト
 (el-get-bundle avy)
 (el-get-bundle bash-completion)
 (el-get-bundle browse-kill-ring)        ; kill-ringの内容を一覧表示
-(el-get-bundle dirtree)                 ; ディレクトリツリー表示
 (el-get-bundle drag-stuff)              ; 行/Region/単語などをドラッグできるように
 (el-get-bundle fringe-helper)
-(el-get-bundle elpa:git-gutter)
-(el-get-bundle elpa:git-gutter+)
-(el-get-bundle elpa:git-gutter-fringe)  ; fringeにgit情報を表示
-(el-get-bundle elpa:git-gutter-fringe+) ; fringeにgit情報を表示
+(el-get-bundle git-gutter)
+(el-get-bundle git-gutter-fringe)       ; fringeにgit情報を表示
+(el-get-bundle git-gutter-fringe+)      ; fringeにgit情報を表示
 (el-get-bundle elpa:hlinum)             ; linum-modeに現在行を強調表示
 (el-get-bundle elpa:htmlize)            ; ソースコードをHTMLとして出力する
 (el-get-bundle idle-highlight-mode)     ; カーソルが乗っているシンボルをハイライト
@@ -146,7 +147,6 @@
 (el-get-bundle open-junk-file)
 (el-get-bundle atykhonov/google-translate :branch "v0.11.10")
 (el-get-bundle multi-term)
-(el-get-bundle eproject)
 
 ;; joke
 (el-get-bundle nyan-mode)               ; 猫がバッファのどのあたりに居るか教えてくれる

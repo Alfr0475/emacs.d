@@ -15,6 +15,12 @@
              (setq comment-end   "")
              (setq comment-start-skip "// *")
 
+             ;; imenuでAllMethodsを表示しない
+             ;; http://qiita.com/osamu2001/items/511b558e5280dbf2b218
+             (assq-delete-all
+              (car (assoc "All Methods" php-imenu-generic-expression))
+              php-imenu-generic-expression)
+
              (rainbow-mode t)
              ;; auto-completionのphp用設定
              (require 'php-completion)

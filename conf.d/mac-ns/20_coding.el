@@ -1,15 +1,18 @@
-(require 'whitespace)
-(setq whitespace-style '(face           ; faceで可視化
-                         trailing       ; 行末
-                         tabs           ; タブ
-                         space-mark
-                         tab-mark
-                         ))
+(use-package whitespace
+  :diminish
+  (whitespace-mode whitespace-newline-mode global-whitespace-mode)
+  :init
+  (global-whitespace-mode 1)
+  :config
+  (setq whitespace-style '(face           ; faceで可視化
+                           trailing       ; 行末
+                           tabs           ; タブ
+                           space-mark
+                           tab-mark
+                           ))
 
-(setq whitespace-display-mappings
-      '((?\t [?\u00BB ?\t] [?\\ ?\t])))
-
-(global-whitespace-mode 1)
+  (setq whitespace-display-mappings
+        '((?\t [?\u00BB ?\t] [?\\ ?\t]))))
 
 ;; paren
 (show-paren-mode t)                     ; 対応括弧のハイライト
@@ -25,51 +28,71 @@
 (put 'downcase-region 'disabled nil)    ; 小文字化の問い合わせ無し
 
 ;; save place
-(setq-default save-place t)             ; 各種ファイルのカーソル位置を記憶
-(require 'saveplace)
-(setq save-place-file (concat user-emacs-directory "tmp/save-place")) ; カーソル位置記憶用ファイル
+(use-package saveplace
+  :init
+  (setq-default save-place t)             ; 各種ファイルのカーソル位置を記憶
+  :config
+  (setq save-place-file (concat user-emacs-directory "tmp/save-place"))) ; カーソル位置記憶用ファイル
 
 ;; 1行ずつスクロールさせる
 (setq scroll-conservatively 35
        scroll-margin 0
        scroll-step 1)
 
-;; dirtree
-(require 'dirtree)
-(require 'eproject)
-(defun ep-dirtree ()
-  (interactive)
-  (dirtree eproject-root t))
-(global-set-key (kbd "C-c C-j") 'ep-dirtree)
-
 ;;------------------------------------------------------------------------------
 ;; auto-complete
 ;;------------------------------------------------------------------------------
-(require 'auto-complete-config)
-;; (require 'auto-complete-yasnippet)
-(require 'pos-tip)
+(use-package auto-complete
+  :diminish auto-complete-mode
+  :config
+  (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "data/auto-complete/dict")))
+(use-package auto-complete-config
+  :config
+  (require 'pos-tip)
 
-(setq ac-comphist-file (concat user-emacs-directory "tmp/ac-comphist.dat"))
+  (setq ac-comphist-file (concat user-emacs-directory "tmp/ac-comphist.dat"))
 
-(add-to-list 'ac-dictionary-directories (concat user-emacs-directory "data/auto-complete/dict"))
+  (ac-config-default)
 
-(ac-config-default)
+  (setq ac-menu-height 20)              ; 補完リストの高さ
 
-;; (setq ac-auto-start 1)                ; 補完を開始する文字数
-(setq ac-auto-show-menu 0.2)          ; 補完リストが表示されるまでの時間
+  (setq ac-dwim t)                      ; 補完候補が１つの時はそれを採用
 
-;; 補完メニュー表示キー
-(ac-set-trigger-key "TAB")
+  (setq ac-use-comphist t)          ; 補完候補をソート
+  (setq ac-auto-show-menu 0.2)      ; 補完リストが表示されるまでの時間
+  (setq ac-candidate-limit nil)     ; 補完候補表示を無制限に
+  (ac-set-trigger-key "TAB")        ; 補完メニュー表示キー
 
-;; 補完メニュー操作
-(setq ac-use-menu-map t)
-(define-key ac-menu-map "\C-n" 'ac-next)
-(define-key ac-menu-map "\C-p" 'ac-previous)
+  (setq ac-use-menu-map t)          ; 補完メニューでmapを有効化
+
+  (bind-key "C-n" 'ac-next ac-menu-map)
+  (bind-key "C-p" 'ac-previous ac-menu-map))
+
+;; (require 'auto-complete-config)
+;; ;; (require 'auto-complete-yasnippet)
+;; (require 'pos-tip)
+
+;; (setq ac-comphist-file (concat user-emacs-directory "tmp/ac-comphist.dat"))
+
+;; (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "data/auto-complete/dict"))
+
+;; (ac-config-default)
+
+;; ;; (setq ac-auto-start 1)                ; 補完を開始する文字数
+;; (setq ac-auto-show-menu 0.2)          ; 補完リストが表示されるまでの時間
+
+;; ;; 補完メニュー表示キー
+;; (ac-set-trigger-key "TAB")
+
+;; ;; 補完メニュー操作
+;; (setq ac-use-menu-map t)
+;; (define-key ac-menu-map "\C-n" 'ac-next)
+;; (define-key ac-menu-map "\C-p" 'ac-previous)
 
 ;; 補完リスト設定追加
-(defun ac-php-mode-setup ()
-  (setq ac-sources (append '(ac-source-yasnippet) ac-sources)))
-(add-hook 'php-mode-hook 'ac-php-mode-setup)
+;; (defun ac-php-mode-setup ()
+;;   (setq ac-sources (append '(ac-source-yasnippet) ac-sources)))
+;; (add-hook 'php-mode-hook 'ac-php-mode-setup)
 
 ;;------------------------------------------------------------------------------
 ;; ace
@@ -97,14 +120,18 @@
 ;;------------------------------------------------------------------------------
 ;; anzu
 ;;------------------------------------------------------------------------------
-(require 'anzu)
-(global-anzu-mode +1)
+(use-package anzu
+  :diminish anzu-mode
+  :init
+  (global-anzu-mode +1))
 
 ;;------------------------------------------------------------------------------
 ;; auto-highlight-symbol
 ;;------------------------------------------------------------------------------
-(require 'auto-highlight-symbol)
-(global-auto-highlight-symbol-mode)
+(use-package auto-highlight-symbol
+  :diminish auto-highlight-symbol-mode
+  :init
+  (global-auto-highlight-symbol-mode))
 
 ;;------------------------------------------------------------------------------
 ;; flycheck
@@ -117,35 +144,42 @@
 ;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;------------------------------------------------------------------------------
-;; git-gutter-fringe+
+;; git-gutter-fringe
 ;;------------------------------------------------------------------------------
-(require 'git-gutter-fringe)
-(global-git-gutter-mode 1)
+(use-package git-gutter-fringe
+  :diminish (git-gutter-mode)
+  :config
+  (global-git-gutter-mode 1))
 
 ;;------------------------------------------------------------------------------
 ;; rainbow-mode
 ;;------------------------------------------------------------------------------
-(require 'rainbow-mode)
-(setq rainbow-html-colors t)
-(setq rainbow-x-colors t)
-(setq rainbow-latex-colors t)
-(setq rainbow-ansi-colors t)
+(use-package rainbow-mode
+  :diminish rainbow-mode
+  :config
+  (setq rainbow-html-colors t)
+  (setq rainbow-x-colors t)
+  (setq rainbow-latex-colors t)
+  (setq rainbow-ansi-colors t))
 
 ;;------------------------------------------------------------------------------
 ;; rainbow-delimiters
 ;;------------------------------------------------------------------------------
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode) ; 括弧の対応を虹色にする
+(use-package rainbow-delimiters
+  :diminish rainbow-delimiters-mode
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode) ; 括弧の対応を虹色にする
 
-;; rainbow-delimitersの色を強調する
-;; http://d.hatena.ne.jp/murase_syuka/20140815/1408061850
-(require 'cl-lib)
-(require 'color)
-(cl-loop
- for index from 1 to rainbow-delimiters-max-face-count
- do
- (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
-   (cl-callf color-saturate-name (face-foreground face) 30)))
+  ;; rainbow-delimitersの色を強調する
+  ;; http://d.hatena.ne.jp/murase_syuka/20140815/1408061850
+  (require 'cl-lib)
+  (require 'color)
+  (cl-loop
+   for index from 1 to rainbow-delimiters-max-face-count
+   do
+   (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
+     (cl-callf color-saturate-name (face-foreground face) 30))))
+
 
 ;;------------------------------------------------------------------------------
 ;; yasnippet
@@ -191,21 +225,21 @@
 
 ;; Align for php-mode
 ;; http://d.hatena.ne.jp/Tetsujin/20070614/1181757931
-(add-to-list 'align-rules-list
-             '(php-assignment
-               (regexp   . "[^-=!^&*+<>/.| \t\n]\\(\\s-*[.-=!^&*+<>/|]*\\)=>?\\(\\s-*\\)\\([^= \t\n]\\|$\\)")
-               (justify  . t)
-               (tab-stop . nil)
-               (modes    . '(php-mode))))
-(add-to-list 'align-dq-string-modes 'php-mode)
-(add-to-list 'align-sq-string-modes 'php-mode)
-(add-to-list 'align-open-comment-modes 'php-mode)
-(setq align-region-separate (concat "\\(^\\s-*$\\)\\|"
-                                    "\\([({}\\(/\*\\)]$\\)\\|"
-                                    "\\(^\\s-*[)}\\(\*/\\)][,;]?$\\)\\|"
-                                    "\\(^\\s-*\\(}\\|for\\|while\\|if\\|else\\|"
-                                    "switch\\|case\\|break\\|continue\\|do\\)[ ;]\\)"
-                                    ))
+;; (add-to-list 'align-rules-list
+;;              '(php-assignment
+;;                (regexp   . "[^-=!^&*+<>/.| \t\n]\\(\\s-*[.-=!^&*+<>/|]*\\)=>?\\(\\s-*\\)\\([^= \t\n]\\|$\\)")
+;;                (justify  . t)
+;;                (tab-stop . nil)
+;;                (modes    . '(php-mode))))
+;; (add-to-list 'align-dq-string-modes 'php-mode)
+;; (add-to-list 'align-sq-string-modes 'php-mode)
+;; (add-to-list 'align-open-comment-modes 'php-mode)
+;; (setq align-region-separate (concat "\\(^\\s-*$\\)\\|"
+;;                                     "\\([({}\\(/\*\\)]$\\)\\|"
+;;                                     "\\(^\\s-*[)}\\(\*/\\)][,;]?$\\)\\|"
+;;                                     "\\(^\\s-*\\(}\\|for\\|while\\|if\\|else\\|"
+;;                                     "switch\\|case\\|break\\|continue\\|do\\)[ ;]\\)"
+;;                                     ))
 
 ;;------------------------------------------------------------------------------
 ;; pcre2el

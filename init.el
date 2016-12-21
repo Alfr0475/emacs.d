@@ -118,18 +118,26 @@
 ;;----------------------------------------------------------------------
 ;; load settings
 ;;----------------------------------------------------------------------
-(require 'init-loader)
-(setq init-loader-show-log-after-init 'error-only) ; ログにエラーのみを表示
-(init-loader-load (locate-user-emacs-file (format "conf.d/%s-%s" run-os-name run-window-system-name)))
+(if (require 'use-package nil 'noerror)
+    (use-package init-loader
+      :demand t
+      :init
+      (progn
+        (setq init-loader-show-log-after-init 'error-only) ; ログにエラーのみを表示
+        (init-loader-load (locate-user-emacs-file (format "conf.d/%s-%s" run-os-name run-window-system-name)))))
+  (progn
+    (setq init-loader-show-log-after-init t)
+    (setq init-loader-byte-compile nil)
+        (init-loader-load (locate-user-emacs-file (format "conf.d/%s-%s" run-os-name run-window-system-name)))))
 
 
 ;;----------------------------------------------------------------------
 ;; start server
 ;;----------------------------------------------------------------------
-(require 'server)
-
-(unless (server-running-p)              ; 複数サーバー起動を防ぐ
-  (server-start))
+(use-package server
+  :config
+  (unless (server-running-p)              ; 複数サーバー起動を防ぐ
+    (server-start)))
 
 
 (provide 'init)

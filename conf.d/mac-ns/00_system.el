@@ -10,8 +10,9 @@
 (set-keyboard-coding-system 'utf-8)     ; キーボード
 (set-terminal-coding-system 'utf-8)     ; ターミナル
 
-(require 'ucs-normalize)
-(set-file-name-coding-system 'utf-8-hfs) ; ファイル名(Mac日本語の濁音/半濁音対応)
+(use-package ucs-normalize
+  :config
+  (set-file-name-coding-system 'utf-8-hfs)) ; ファイル名(Mac日本語の濁音/半濁音対応)
 
 (set-default 'buffer-file-coding-system 'utf-8-unix) ; バッファー
 
@@ -54,6 +55,7 @@
 (setq smex-save-file "~/.emacs.d/tmp/smex-items")
 (setq url-cookie-file "~/.emacs.d/tmp/url/cookies")
 (setq url-configuration-directory "~/.emacs.d/tmp/url/")
+(setq pcache-directory "~/.emacs.d/tmp/pcache/")
 
 ;; C-x C-C で終了するキーバインドを無効にしたのでEmacsを終了するaliase追加
 (defalias 'exit-emacs 'save-buffers-kill-emacs)
@@ -82,16 +84,20 @@
               initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
 
-(require 'uniquify)                     ; 同名ファイル等はディレクトリパスもつける
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-(setq uniquify-ignore-buffers-re "*[^*]+*") ; *scratch*等を省く
+; 同名ファイル等はディレクトリパスもつける
+(use-package uniquify
+  :config
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+  (setq uniquify-ignore-buffers-re "*[^*]+*")) ; *scratch*等を省く
 
 ;;------------------------------------------------------------------------------
 ;; hlinum
 ;;------------------------------------------------------------------------------
-(require 'hlinum)
-(global-linum-mode t)                   ; バッファ中の行番号表示
-(setq linum-format "%5d")               ; 行番号書式
+(use-package hlinum
+  :init
+  (global-linum-mode t)                   ; バッファ中の行番号表示
+  :config
+  (setq linum-format "%5d"))               ; 行番号書式
 
 ;;------------------------------------------------------------------------------
 ;; IME
@@ -124,41 +130,44 @@
 ;;------------------------------------------------------------------------------
 ;; browse-kill-ring
 ;;------------------------------------------------------------------------------
-(require 'browse-kill-ring)
-(global-set-key "\M-y" 'browse-kill-ring)
-(setq browse-kill-ring-display-style 'one-line) ; kill-ring を一行で表示
-(setq browse-kill-ring-quit-action 'kill-and-delete-window) ; browse-kill-ring 終了時にバッファを kill する
-(setq browse-kill-ring-resize-window t) ; 必要に応じて browse-kill-ring のウィンドウの大きさを変更する
-(setq browse-kill-ring-separator "-------") ; kill-ring の内容を表示する際の区切りを指定する
-(setq browse-kill-ring-highlight-current-entry t) ; 現在選択中の kill-ring のハイライトする
-(setq browse-kill-ring-separator-face 'region) ; 区切り文字のフェイスを指定する
-(setq browse-kill-ring-maximum-display-length 100) ; 一覧で表示する文字数を指定する。 nil ならすべて表示される。
+;; (require 'browse-kill-ring)
+;; (global-set-key "\M-y" 'browse-kill-ring)
+;; (setq browse-kill-ring-display-style 'one-line) ; kill-ring を一行で表示
+;; (setq browse-kill-ring-quit-action 'kill-and-delete-window) ; browse-kill-ring 終了時にバッファを kill する
+;; (setq browse-kill-ring-resize-window t) ; 必要に応じて browse-kill-ring のウィンドウの大きさを変更する
+;; (setq browse-kill-ring-separator "-------") ; kill-ring の内容を表示する際の区切りを指定する
+;; (setq browse-kill-ring-highlight-current-entry t) ; 現在選択中の kill-ring のハイライトする
+;; (setq browse-kill-ring-separator-face 'region) ; 区切り文字のフェイスを指定する
+;; (setq browse-kill-ring-maximum-display-length 100) ; 一覧で表示する文字数を指定する。 nil ならすべて表示される。
 
 ;;------------------------------------------------------------------------------
 ;; undo-tree
 ;;------------------------------------------------------------------------------
-(require 'undo-tree)
-(global-undo-tree-mode t)
-(global-set-key (kbd "M-/") 'undo-tree-redo)
-
-(custom-set-variables
- '(undo-tree-auto-save-history t)
- '(undo-tree-history-directory-alist '(("". "~/.emacs.d/tmp/undo-tree")))
- '(undo-tree-visualizer-timestamps t)
- )
-(define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit)
-(define-key undo-tree-visualizer-mode-map (kbd "RET") 'undo-tree-visualizer-quit)
+(use-package undo-tree
+  :diminish undo-tree-mode
+  :init
+  (global-undo-tree-mode t)
+  :config
+  (custom-set-variables
+   '(undo-tree-auto-save-history t)
+   '(undo-tree-history-directory-alist '(("". "~/.emacs.d/tmp/undo-tree")))
+   '(undo-tree-visualizer-timestamps t)
+   )
+  (bind-key "C-g" 'undo-tree-visualizer-quit undo-tree-visualizer-mode-map)
+  (bind-key "RET" 'undo-tree-visualizer-quit undo-tree-visualizer-mode-map)
+  :bind
+  (("M-/" . undo-tree-redo)))
 
 ;;------------------------------------------------------------------------------
 ;; recentf
 ;;------------------------------------------------------------------------------
-(when (require 'recentf nil t)
+(use-package recentf
+  :config
   (setq recentf-max-saved-items 2000)   ; 最近開いたファイル
   (custom-set-variables '(recentf-save-file "~/.emacs.d/tmp/recentf"))
   (setq recentf-exclude '("~/.emacs.d/tmp/recentf"))
   (setq recentf-auto-cleanup 10)
-  (setq recentf-auto-save-timer
-        (run-with-idle-timer 30 t 'recentf-save-list))
+  (setq recentf-auto-save-timer (run-with-idle-timer 30 t 'recentf-save-list))
   (require 'recentf-ext))
 
 ;;------------------------------------------------------------------------------
@@ -169,7 +178,8 @@
 
 ;; session.el
 ;;   kill-ringやミニバッファで過去に開いたファイルなどの履歴を保存する
-(when (require 'session nil t)
+(use-package session
+  :config
   (setq session-initialize '(de-saveplace session keys menus places)
         session-globals-include '((kill-ring 50)
                                   (session-file-alist 500 t)
@@ -181,8 +191,8 @@
   (setq session-undo-check -1))
 
 ;; minibuf-isearch
-;;   minibufでisearchを使えるようにする
-(require 'minibuf-isearch nil t)
+;;   minibufでisearchを使えるようにしてsessionの履歴を検索しやすくする
+(use-package minibuf-isearch)
 
 ;;------------------------------------------------------------------------------
 ;; grep
@@ -202,12 +212,16 @@
 ;;------------------------------------------------------------------------------
 ;; which-key
 ;;------------------------------------------------------------------------------
-;; 3つの表示方法どれか1つ選ぶ
-(which-key-setup-side-window-bottom)       ; ミニバッファ
-;; (which-key-setup-side-window-right)        ; 右端
-;; (which-key-setup-side-window-right-bottom) ; 両方使う
-
-(which-key-mode 1)
+(use-package which-key
+  :diminish which-key-mode
+  :init
+  (which-key-mode 1)
+  :config
+  ;; 3つの表示方法どれか1つ選ぶ
+  (which-key-setup-side-window-bottom)       ; ミニバッファ
+  ;; (which-key-setup-side-window-right)        ; 右端
+  ;; (which-key-setup-side-window-right-bottom) ; 両方使う
+)
 
 ;;------------------------------------------------------------------------------
 ;; migemo
