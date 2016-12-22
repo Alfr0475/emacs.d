@@ -96,11 +96,11 @@
         (inline-open           . 0) ; クラス内のインラインメソッドを開始する中括弧
         (inline-close          . 0) ; クラス内のインラインメソッドを終了する中括弧
         (topmost-intro         . 0) ; 最上位の言語構成要素の最初の行
-        (topmost-intro-cont    . 0) ; 最上位の言語構成要素の２行目以降
+        (topmost-intro-cont    . (first php-lineup-cascaded-calls +)) ; 最上位の言語構成要素の２行目以降
         (block-open            . 0) ; 文ブロックを開始する中括弧
         (block-close           . 0) ; 文ブロックを終了する中括弧
         (statement             . 0) ; 通常の文
-        (statement-cont        . +) ; 分の継続行
+        (statement-cont        . (first php-lineup-cascaded-calls php-lineup-string-cont +)) ; 文の継続行
         (statement-block-intro . +) ; 新規文ブロックの最初の行
         (statement-case-intro  . +) ; caseブロックの最初の行
         (statement-case-open   . 0) ; 中括弧で始まるcaseブロックの最初の行
@@ -111,11 +111,13 @@
         (do-while-closure      . 0) ; do-while文のwhile
         (else-clause           . 0) ; if-else文のelse
         (comment-intro         . 0) ; コメントの導入部分だけを含んだ行
-        (arglist-intro         . +) ; 引数リストの最初の行
-        (arglist-cont          . 0) ; 引数リストを開始する括弧の行に引数がない場合、引数リストの２行目以降
-        (arglist-cont-nonempty . +) ; 引数リストを開始する括弧の行に少なくとも１つの引数がある場合、引数リストの２行目以降
-        (arglist-close         . 0) ; 引数リストを終了する括弧
+        (arglist-intro         . php-lineup-arglist-intro) ; 引数リストの最初の行
+        (arglist-cont          . (first php-lineup-cascaded-calls 0)) ; 引数リストを開始する括弧の行に引数がない場合、引数リストの２行目以降
+        (arglist-cont-nonempty . (first php-lineup-cascaded-calls c-lineup-arglist)) ; 引数リストを開始する括弧の行に少なくとも１つの引数がある場合、引数リストの２行目以降
+        (arglist-close         . php-lineup-arglist-close) ; 引数リストを終了する括弧
         (inclass               . +) ; クラス定義の内側に入れ子になった言語構成要素
+        (inlambda              . 0)
+        (lambda-intro-cont     . +)
         ))))
 
 (c-add-style "c-style-php" c-style-php nil)
