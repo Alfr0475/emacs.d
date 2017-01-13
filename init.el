@@ -579,6 +579,7 @@
       :config
       (projectile-global-mode t)
       (helm-projectile-on)
+      (setq projectile-known-projects-file "~/.emacs.d/tmp/projectile-bookmarks.eld")
       :bind (
              ("C-c p p" . helm-projectile-switch-project)))
     (use-package helm-gtags
