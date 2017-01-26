@@ -1,5 +1,12 @@
 ;;------------------------------------------------------------------------------
 ;; init.el が読み込まれた後に実行される hook
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-hook 'after-init-hook
           (lambda ()
             (ec-load-el-get-config)
@@ -30,7 +37,8 @@
             (ec-load-font-config)
             (ec-load-helm-config)
             (ec-load-coding-config)
-            (ec-load-auto-complete-config)
+            ;; (ec-load-auto-complete-config)
+            (ec-load-company-config)
             (ec-load-diff-config)
             (ec-load-anzu-config)
             (ec-load-auto-highlight-symbol-config)
@@ -662,28 +670,72 @@
   (use-package auto-complete
     :diminish auto-complete-mode
     :config
-    (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "data/auto-complete/dict")))
-  (use-package auto-complete-config
+    (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "data/auto-complete/dict"))
+
+    (use-package auto-complete-config
+      :config
+      (use-package pos-tip)
+
+      (setq ac-comphist-file (concat user-emacs-directory "tmp/ac-comphist.dat"))
+
+      ;;(ac-config-default)
+
+      (setq ac-menu-height 20)              ; 補完リストの高さ
+
+      (setq ac-dwim t)                      ; 補完候補が１つの時はそれを採用
+
+      (setq ac-use-comphist t)          ; 補完候補をソート
+      (setq ac-auto-show-menu 0.2)      ; 補完リストが表示されるまでの時間
+      (setq ac-candidate-limit nil)     ; 補完候補表示を無制限に
+      (ac-set-trigger-key "TAB")        ; 補完メニュー表示キー
+
+      (setq ac-use-menu-map t)          ; 補完メニューでmapを有効化
+
+      (bind-key "C-n" 'ac-next ac-menu-map)
+      (bind-key "C-p" 'ac-previous ac-menu-map))
+    ))
+
+(defun ec-load-company-config ()
+  (use-package company
+    :diminish company-mode
     :config
-    (require 'pos-tip)
+    (global-company-mode)            ; 基本的にcompany-modeを有効
+    (company-quickhelp-mode)
 
-    (setq ac-comphist-file (concat user-emacs-directory "tmp/ac-comphist.dat"))
+    (setq company-idle-delay 0.2)   ; 補完リストが表示されるまでの時間
+    (setq company-minimum-prefix-length 1)
+    (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に戻る
 
-    (ac-config-default)
+    (defun org-company-insert-candidate (candidate)
+      (when (> (length candidate) 0)
+        (setq candidate (substring-no-properties candidate))
+        (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
+            (insert (company-strip-prefix candidate))
+          (if (equal company-prefix candidate)
+              (company-select-next)
+            (delete-region (- (point) (length company-prefix)) (point))
+            (insert candidate))
+          )))
 
-    (setq ac-menu-height 20)              ; 補完リストの高さ
+    (defun org-company-complete-common ()
+      (interactive)
+      (when (company-manual-begin)
+        (if (and (not (cdr company-candidates))
+                 (equal company-common (car company-candidates)))
+            (company-complete-selection)
+          (org-company-insert-candidate company-common))))
 
-    (setq ac-dwim t)                      ; 補完候補が１つの時はそれを採用
-
-    (setq ac-use-comphist t)          ; 補完候補をソート
-    (setq ac-auto-show-menu 0.2)      ; 補完リストが表示されるまでの時間
-    (setq ac-candidate-limit nil)     ; 補完候補表示を無制限に
-    (ac-set-trigger-key "TAB")        ; 補完メニュー表示キー
-
-    (setq ac-use-menu-map t)          ; 補完メニューでmapを有効化
-
-    (bind-key "C-n" 'ac-next ac-menu-map)
-    (bind-key "C-p" 'ac-previous ac-menu-map))
+    :bind
+    (
+     :map company-active-map
+          ("M-n" . nil)
+          ("M-p" . nil)
+          ("C-n" . company-select-next)
+          ("C-p" . company-select-previous)
+          ("C-h" . nil)
+          ("TAB" . org-company-complete-common)
+     )
+    )
   )
 
 ;;------------------------------------------------------------------------------
@@ -800,23 +852,8 @@
                   (car (assoc "All Methods" php-imenu-generic-expression))
                   php-imenu-generic-expression)
 
-                 (rainbow-mode t)
-                 ;; auto-completionのphp用設定
-                 (use-package php-completion
-                   :config
-                   (php-completion-mode t))
-                 ;;(define-key php-mode-map (kbd "\C-o") 'phpcmp-complete)
-                 (when (require 'auto-complete nil t)
-                   (make-variable-buffer-local 'ac-sources)
-                   (add-to-list ac-sources '(
-                                             ac-source-php
-                                             ac-source-php-completion
-                                             ac-source-words-in-same-mode-buffers
-                                             ac-source-filename
-                                             ))
-                   (auto-complete-mode t))
-                 )))
-  )
+                 (rainbow-mode t))
+              )))
 
 ;;------------------------------------------------------------------------------
 ;; web-mode
@@ -854,7 +891,7 @@
                                     ac-source-html-tag
                                     ac-source-html-attribute
                                     ))
-                         ("php" . (ac-source-php-completion
+                         ("php" . (
                                    ac-source-words-in-same-mode-buffers
                                    ac-source-filename))
                          )
@@ -1257,7 +1294,7 @@ C-uをつけると１レベル上、C-u C-uをつけると１レベル下の見�
 ;;------------------------------------------------------------------------------
 ;; テーマ
 (defun ec-load-themes-config ()
-  (cond ((and run-emacs24)
+  (cond ((>= emacs-major-version 24)
          ;; Emacs24から実装されたThemeフレームワークを利用
          (setq custom-theme-directory "~/.emacs.d/data/themes/")
          (load-theme 'feel-at-home t)
@@ -1294,6 +1331,7 @@ C-uをつけると１レベル上、C-u C-uをつけると１レベル下の見�
 (defun ec-load-server-config ()
   (use-package server
     :config
+    (setq server-socket-dir "~/.emacs.d/tmp/server")
     (unless (server-running-p)              ; 複数サーバー起動を防ぐ
       (server-start)))
   )
@@ -1364,3 +1402,17 @@ C-uをつけると１レベル上、C-u C-uをつけると１レベル下の見�
 
 
 (provide 'init)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (rainbow-mode htmlize ssh-config-mode gitconfig-mode gitignore-mode csv-mode helm-dired-recent-dirs))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

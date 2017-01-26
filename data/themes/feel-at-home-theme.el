@@ -36,6 +36,15 @@
  ;; whitespace
  '(whitespace-tab      ((t (:background "#424242")))) ; タブ
  '(whitespace-trailing ((t (:foreground "#4682B4" :underline t)))) ; タブ
+
+ ;; company
+ '(company-tooltip                  ((t (:foreground "black" :background "lightgrey"))))
+ '(company-tooltip-common           ((t (:foreground "black" :background "lightgrey"))))
+ '(company-tooltip-common-selection ((t (:foreground "white" :background "steelblue"))))
+ '(company-tooltip-selection        ((t (:foreground "black" :background "steelblue"))))
+ '(company-preview-common           ((t (:background nil :foreground "lightgrey" :underline t))))
+ '(company-scrollbar-fg             ((t (:background "orange"))))
+ '(company-scrollbar-bg             ((t (:background "gray40"))))
 )
 
 ;;;###autoload

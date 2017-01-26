@@ -33,7 +33,7 @@
 (el-get-bundle actionscript-mode)
 (el-get-bundle apache-mode)
 (el-get-bundle cmake-mode)
-(el-get-bundle cmd-mode)
+;;;;;;(el-get-bundle cmd-mode)
 (el-get-bundle cperl-mode)
 (el-get-bundle crontab-mode)
 (el-get-bundle josteink/csharp-mode)
@@ -51,14 +51,14 @@
 ;(el-get-bundle ejmr/php-mode :branch "v1.13.5")
 (el-get-bundle ejmr/php-mode)
 (el-get-bundle ruby-mode)
-(el-get-bundle smarty-mode)
+;; (el-get-bundle smarty-mode)
 (el-get-bundle ssh-config-mode)
 (el-get-bundle swift-mode)
 (el-get-bundle terraform-mode)
 (el-get-bundle textile-mode)
-(el-get-bundle tsv-mode)
+;;;;;;(el-get-bundle tsv-mode)
 (el-get-bundle twittering-mode)
-(el-get-bundle visual-basic-mode)
+;;;;;;(el-get-bundle visual-basic-mode)
 (el-get-bundle web-mode)
 (el-get-bundle yaml-mode)
 (el-get-bundle zencoding-mode)
@@ -67,11 +67,10 @@
 (el-get-bundle ace-jump-mode)           ; 画面内の単語に飛ぶ
 (el-get-bundle ace-isearch)             ; ace-jump-mode + isearch + helm-swoop
 (el-get-bundle ag)
-(el-get-bundle align)
+;;;;;;(el-get-bundle align)
 (el-get-bundle anzu)                    ; 検索のマッチ数表示
 (el-get-bundle auto-highlight-symbol)   ; カーソルが乗っているシンボルをハイライト
 (el-get-bundle avy)
-(el-get-bundle bash-completion)
 (el-get-bundle browse-kill-ring)        ; kill-ringの内容を一覧表示
 (el-get-bundle drag-stuff)              ; 行/Region/単語などをドラッグできるように
 (el-get-bundle fringe-helper)
@@ -81,17 +80,15 @@
 (el-get-bundle elpa:hlinum)             ; linum-modeに現在行を強調表示
 (el-get-bundle elpa:htmlize)            ; ソースコードをHTMLとして出力する
 (el-get-bundle idle-highlight-mode)     ; カーソルが乗っているシンボルをハイライト
-(el-get-bundle java-complete)
+;;;;;;(el-get-bundle java-complete)
 (el-get-bundle json-reformat)           ; JSON整形
 (el-get-bundle json-snatcher)
 (el-get-bundle migemo)                  ; migemoのEmacs版
 (el-get-bundle multiple-cursors)        ; 複数カーソル
 (el-get-bundle pcre2el)                 ; Emacsの正規表現をPCREへ変換
-(el-get-bundle perl-completion)
-(el-get-bundle php-completion)
-(el-get-bundle popup)                   ; ポップアップメニューを出す
+;;(el-get-bundle popup)                   ; ポップアップメニューを出す
 (el-get-bundle pos-tip)                 ; tipsを表示させる事ができる
-(el-get-bundle popup-pos-tip)
+;;;;;;(el-get-bundle popup-pos-tip)
 (el-get-bundle popwin)                  ; 指定したバッファをポップアップウィンドウ化
 (el-get-bundle projectile)              ; プロジェクト管理
 (el-get-bundle rainbow-delimiters)      ; 括弧に段階を付けて色付け
@@ -100,39 +97,24 @@
 (el-get-bundle rsense)                  ; Rubyの開発援助ツール
 (el-get-bundle ruby-block)              ; Rubyのendに対応する行をハイライトする
 (el-get-bundle session)                 ; Emacs起動時に前回の状態を記憶しておく
-(el-get-bundle shell-completion)
 (el-get-bundle smartparens)             ; 括弧自動挿入や選択範囲を括弧で囲む
 (el-get-bundle smex)                    ; M-xを曖昧マッチ
-(el-get-bundle sql-completion)
 (el-get-bundle tabbar)                  ; タブエディタ化
 (el-get-bundle undo-tree)               ; undoをバージョン管理する
 (el-get-bundle undohist)                ; undoの永続化
 (el-get-bundle wgrep)                   ; grepの結果で直接編集できる
 (el-get-bundle which-key)               ; 次のキープレフィックスを教えてくれる
-(el-get-bundle whitespace)              ; タブや行末空白の可視化
+;;;;;;(el-get-bundle whitespace)              ; タブや行末空白の可視化
 (el-get-bundle yasnippet)               ; スニペット管理
 
-;; auto complete
-(el-get-bundle elpa:auto-complete)
-(el-get-bundle ac-html)
-(el-get-bundle ac-php)
-(el-get-bundle ac-js2)
-(el-get-bundle auto-complete-c-headers)
-(el-get-bundle auto-complete-clang)
-(el-get-bundle auto-complete-clang-objc)
-;; (el-get-bundle auto-complete-css)
-;; (el-get-bundle auto-complete-emacs-lisp)
-;; (el-get-bundle auto-complete-ruby)
-(el-get-bundle fuzzy)                   ; 曖昧マッチ
-(el-get-bundle org-ac)
+;; company-mode
+(el-get-bundle company-mode)
+(el-get-bundle company-quickhelp)
+(el-get-bundle company-web)
 
 ;; flycheck
-(el-get-bundle elpa:flycheck)           ; シンタックスチェック
-(el-get-bundle elpa:flycheck-pos-tip)
-
-;; flymake
-(el-get-bundle flymake)                 ; シンタックスチェック
-(el-get-bundle flymake-for-csharp)
+(el-get-bundle flycheck)           ; シンタックスチェック
+(el-get-bundle flycheck-pos-tip)
 
 ;; org-mode
 (el-get-bundle org-mode)
