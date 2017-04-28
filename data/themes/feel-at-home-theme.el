@@ -30,7 +30,7 @@
  '(hl-line ((t (:background "#333333")))) ; カレント行
 
  ;; linum
- '(linum ((t (:foreground "#000000" :background "#999999")))) ; 行番号
+ '(linum                ((t (:foreground "#000000" :background "#999999")))) ; 行番号
  '(linum-highlight-face ((t (:foreground "#999999" :background "#000000"))))
 
  ;; whitespace
@@ -45,6 +45,12 @@
  '(company-preview-common           ((t (:background nil :foreground "lightgrey" :underline t))))
  '(company-scrollbar-fg             ((t (:background "orange"))))
  '(company-scrollbar-bg             ((t (:background "gray40"))))
+
+ ;; popup
+ '(popup-face                       ((t (:foreground "black" :background "lightgrey"))))
+ '(popup-summary-face               ((t (:foreground "dimgray" :background "lightgrey"))))
+ '(popup-scroll-bar-foreground-face ((t (:background "orange"))))
+ '(popup-scroll-bar-background-face ((t (:background "gray40"))))
 )
 
 ;;;###autoload

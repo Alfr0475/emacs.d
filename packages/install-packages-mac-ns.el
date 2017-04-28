@@ -111,6 +111,7 @@
 (el-get-bundle company-mode)
 (el-get-bundle company-quickhelp)
 (el-get-bundle company-web)
+(el-get-bundle ac-php)
 
 ;; flycheck
 (el-get-bundle flycheck)           ; シンタックスチェック

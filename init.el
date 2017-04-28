@@ -14,6 +14,7 @@
             (ec-load-system-config)
             (ec-load-whitespace-config)
             (ec-load-tabbar-config)
+            (ec-load-flycheck-config)
             ))
 
 ;;------------------------------------------------------------------------------
@@ -74,9 +75,8 @@
             ))
 
 
-;;------------------------------------------------------------------------------
-;; El-get
 (defun ec-load-el-get-config ()
+  "El-get configuration."
   (when load-file-name
     (setq user-emacs-directory (file-name-directory load-file-name)))
 
@@ -113,6 +113,7 @@
 ;;------------------------------------------------------------------------------
 ;; load-path
 (defun ec-load-load-path-config ()
+  "Load Path configuration."
   (setq load-path
         (append
          (list
@@ -124,6 +125,7 @@
 ;;------------------------------------------------------------------------------
 ;; 基本的な設定
 (defun ec-load-system-config ()
+  "System configuration."
   (cd "~/")                               ; デフォルトディレクトリ
   (set-language-environment "Japanese")   ; 言語設定
 
@@ -163,6 +165,7 @@
 ;;------------------------------------------------------------------------------
 ;; 文字コード
 (defun ec-load-string-code-config ()
+  "StringCode configuration."
   (prefer-coding-system 'utf-8-unix)      ; デフォルトの文字コード
   (set-default-coding-systems 'utf-8)     ; デフォルトの文字コード
   (set-keyboard-coding-system 'utf-8)     ; キーボード
@@ -178,6 +181,7 @@
 ;;------------------------------------------------------------------------------
 ;; モードライン
 (defun ec-load-mode-line-config ()
+  "Mode line configuration."
   ;; 改行コード表示
   (setq eol-mnemonic-dos "(CRLF)")
   (setq eol-mnemonic-mac "(CR)")
@@ -192,6 +196,7 @@
 ;;------------------------------------------------------------------------------
 ;; スクロール
 (defun ec-load-scroll-config ()
+  "Scroll configuration."
   (setq next-screen-context-lines 2)       ; 画面スクロール時の重複行数
   (setq scroll-margin 5)                   ; 画面端に到達する前に画面がスクロールする
   (setq scroll-preserve-screen-position t) ; スクロール時になるべくカーソル位置を変えない
@@ -200,6 +205,7 @@
 ;;------------------------------------------------------------------------------
 ;; ウィンドウ
 (defun ec-load-window-config ()
+  "Window configuration."
   (progn
     (set-scroll-bar-mode nil)         ; スクロールバー非表示
     (setq ns-pop-up-frames nil)       ; 複数起動防止
@@ -229,6 +235,7 @@
 ;;------------------------------------------------------------------------------
 ;; IME
 (defun ec-load-ime-config ()
+  "IME configuration."
   (setq default-input-method "MacOSX")
   (mac-add-key-passed-to-system 'shift)
   (add-hook 'after-init-hook 'mac-change-language-to-us) ; 起動したら英字にする
@@ -242,6 +249,7 @@
 ;;------------------------------------------------------------------------------
 ;; undo-tree
 (defun ec-load-undo-tree ()
+  "Undo-tree configuration."
   (use-package undo-tree
     :diminish undo-tree-mode
     :init
@@ -700,7 +708,7 @@
     :diminish company-mode
     :config
     (global-company-mode)            ; 基本的にcompany-modeを有効
-    (company-quickhelp-mode)
+    ;; (company-quickhelp-mode 1)
 
     (setq company-idle-delay 0.2)   ; 補完リストが表示されるまでの時間
     (setq company-minimum-prefix-length 1)
@@ -725,16 +733,20 @@
             (company-complete-selection)
           (org-company-insert-candidate company-common))))
 
-    :bind
-    (
-     :map company-active-map
-          ("M-n" . nil)
-          ("M-p" . nil)
-          ("C-n" . company-select-next)
-          ("C-p" . company-select-previous)
-          ("C-h" . nil)
-          ("TAB" . org-company-complete-common)
-     )
+    :bind (
+           :map company-search-map
+                ("M-n" . nil)
+                ("M-p" . nil)
+                ("C-n" . company-select-next)
+                ("C-p" . company-select-previous)
+           :map company-active-map
+                ("M-n" . nil)
+                ("M-p" . nil)
+                ("C-n" . company-select-next)
+                ("C-p" . company-select-previous)
+                ("C-h" . nil)
+                ("TAB" . org-company-complete-common)
+                )
     )
   )
 
@@ -845,6 +857,10 @@
                  (setq comment-start "// ")
                  (setq comment-end   "")
                  (setq comment-start-skip "// *")
+
+                 (require 'company-php)
+                 (company-mode t)
+                 (add-to-list 'company-backends 'company-ac-php-backend)
 
                  ;; imenuでAllMethodsを表示しない
                  ;; http://qiita.com/osamu2001/items/511b558e5280dbf2b218
@@ -1133,6 +1149,20 @@ C-uをつけると１レベル上、C-u C-uをつけると１レベル下の見�
                                ((char-equal ?* (aref (buffer-name b) 0)) nil) ; それ以外の*で始まるバッファは表示しない
                                ((buffer-live-p b) b)))
                           (buffer-list)))))
+  )
+
+;;------------------------------------------------------------------------------
+;; flycheck
+(defun ec-load-flycheck-config ()
+  (use-package flycheck
+    :init
+    (global-flycheck-mode)
+    (flycheck-pos-tip-mode)
+    :config
+    (progn
+      (custom-set-variables '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+    (setq flycheck-pos-tip-timeout nil)
+    )
   )
 
 ;;------------------------------------------------------------------------------
