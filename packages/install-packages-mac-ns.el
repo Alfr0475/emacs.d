@@ -15,9 +15,11 @@
 (el-get-bundle use-package :depends (diminish)) ; Emacs設定用のマクロ
 (el-get-bundle exec-path-from-shell)    ; 環境変数のpathを引き継ぐ
 ;;(el-get-bundle auto-async-byte-compile) ; 自動バイトコンパイル
+(el-get-bundle pcre2el)
+(el-get-bundle jwiegley/emacs-async)
 
 ;; helm
-(el-get-bundle helm)
+(el-get-bundle helm :branch "v2.5.4")
 (el-get-bundle helm-ag)
 (el-get-bundle helm-dired-recent-dirs)
 (el-get-bundle helm-gtags)
