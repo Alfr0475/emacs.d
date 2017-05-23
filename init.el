@@ -14,7 +14,8 @@
             (ec-load-system-config)
             (ec-load-whitespace-config)
             (ec-load-tabbar-config)
-            (ec-load-flycheck-config)
+            (ec-load-company-config)
+            ;;(ec-load-flycheck-config)
             ))
 
 ;;------------------------------------------------------------------------------
@@ -39,7 +40,6 @@
             (ec-load-helm-config)
             (ec-load-coding-config)
             ;; (ec-load-auto-complete-config)
-            (ec-load-company-config)
             (ec-load-diff-config)
             (ec-load-anzu-config)
             (ec-load-auto-highlight-symbol-config)
@@ -160,6 +160,7 @@
   (setq url-cookie-file "~/.emacs.d/tmp/url/cookies")
   (setq url-configuration-directory "~/.emacs.d/tmp/url/")
   (setq pcache-directory "~/.emacs.d/tmp/pcache/")
+  (setq nsm-settings-file "~/.emacs.d/tmp/network-security.data")
   )
 
 ;;------------------------------------------------------------------------------
@@ -707,8 +708,8 @@
   (use-package company
     :diminish company-mode
     :config
-    (global-company-mode)            ; 基本的にcompany-modeを有効
-    ;; (company-quickhelp-mode 1)
+    (global-company-mode +1)            ; 基本的にcompany-modeを有効
+    (company-quickhelp-mode +1)
 
     (setq company-idle-delay 0.2)   ; 補完リストが表示されるまでの時間
     (setq company-minimum-prefix-length 1)
@@ -745,6 +746,7 @@
                 ("C-n" . company-select-next)
                 ("C-p" . company-select-previous)
                 ("C-h" . nil)
+                ("C-s" . company-filter-candidates)
                 ("TAB" . org-company-complete-common)
                 )
     )
@@ -858,9 +860,10 @@
                  (setq comment-end   "")
                  (setq comment-start-skip "// *")
 
-                 (require 'company-php)
+                 ;;(require 'company-php)
                  (company-mode t)
-                 (add-to-list 'company-backends 'company-ac-php-backend)
+                 ;;(add-to-list 'company-backends 'company-ac-php-backend)
+                 (add-to-list 'company-backends 'php-extras-company)
 
                  ;; imenuでAllMethodsを表示しない
                  ;; http://qiita.com/osamu2001/items/511b558e5280dbf2b218
@@ -930,7 +933,7 @@
     (add-hook 'sh-mode-hook
               '(lambda ()
                  (c-set-style "original-style")
-                 (auto-complete-mode t)
+                 ;;(auto-complete-mode t)
                  )))
   )
 
@@ -1042,7 +1045,10 @@
 (defun ec-load-ssh-config-mode-config ()
   (use-package ssh-config-mode
     :mode (
-           ("\\.ssh\\/config$" . ssh-config-mode)
+           ("/\\.ssh\\/config\\" . ssh-config-mode)
+           ("/sshd?_config\\" . ssh-config-mode)
+           ("/known_hosts\\" . ssh-known-hosts-mode)
+           ("/authorized_keys2?\\" . ssh-authorized-keys-mode)
            ))
   )
 

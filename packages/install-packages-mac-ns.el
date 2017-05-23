@@ -52,9 +52,10 @@
 (el-get-bundle nginx-mode)
 ;(el-get-bundle ejmr/php-mode :branch "v1.13.5")
 (el-get-bundle ejmr/php-mode)
+(el-get-bundle arnested/php-extras)
 (el-get-bundle ruby-mode)
 ;; (el-get-bundle smarty-mode)
-(el-get-bundle ssh-config-mode)
+(el-get-bundle elpa:ssh-config-mode)
 (el-get-bundle swift-mode)
 (el-get-bundle terraform-mode)
 (el-get-bundle textile-mode)
@@ -113,7 +114,7 @@
 (el-get-bundle company-mode)
 (el-get-bundle company-quickhelp)
 (el-get-bundle company-web)
-(el-get-bundle ac-php)
+;;(el-get-bundle ac-php)
 
 ;; flycheck
 (el-get-bundle flycheck)           ; シンタックスチェック
@@ -128,7 +129,7 @@
 
 ;; application
 (el-get-bundle navi2ch)                 ; 2chブラウザ
-(el-get-bundle OmniSharp/omnisharp-emacs)
+;;(el-get-bundle OmniSharp/omnisharp-emacs)
 (el-get-bundle open-junk-file)
 (el-get-bundle atykhonov/google-translate :branch "v0.11.10")
 (el-get-bundle multi-term)
