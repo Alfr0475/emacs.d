@@ -62,6 +62,7 @@
             (ec-load-css-mode-config)
             (ec-load-scss-mode-config)
             (ec-load-sass-mode-config)
+            (ec-load-coffee-mode-config)
             (ec-load-org-mode-config)
             (ec-load-auto-insert-config)
             (ec-load-navi2ch-config)
@@ -1028,6 +1029,15 @@
   (use-package sass-mode
     :mode (
            ("\\.sass$" . sass-mode)
+           ))
+  )
+
+;;------------------------------------------------------------------------------
+;; coffee-mode
+(defun ec-load-coffee-mode-config ()
+  (use-package coffee-mode
+    :mode (
+           ("\\.coffee$" . coffee-mode)
            ))
   )
 

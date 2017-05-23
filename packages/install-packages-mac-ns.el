@@ -36,6 +36,7 @@
 (el-get-bundle apache-mode)
 (el-get-bundle cmake-mode)
 ;;;;;;(el-get-bundle cmd-mode)
+(el-get-bundle coffee-mode)
 (el-get-bundle cperl-mode)
 (el-get-bundle crontab-mode)
 (el-get-bundle josteink/csharp-mode)
