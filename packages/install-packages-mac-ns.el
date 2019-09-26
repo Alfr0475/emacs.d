@@ -30,6 +30,7 @@
 (el-get-bundle helm-helm-commands)
 (el-get-bundle helm-descbinds)
 (el-get-bundle helm-git-grep)
+(el-get-bundle alfr0475/helm-open-junk-file)
 
 ;; major mode
 (el-get-bundle actionscript-mode)
@@ -50,12 +51,14 @@
 (el-get-bundle js2-mode)
 (el-get-bundle json-mode)
 (el-get-bundle markdown-mode)
+(el-get-bundle mmm-mode)
 (el-get-bundle nginx-mode)
 ;(el-get-bundle ejmr/php-mode :branch "v1.13.5")
 (el-get-bundle ejmr/php-mode)
 (el-get-bundle arnested/php-extras)
 (el-get-bundle ruby-mode)
 ;; (el-get-bundle smarty-mode)
+(el-get-bundle ssass-mode)
 (el-get-bundle elpa:ssh-config-mode)
 (el-get-bundle swift-mode)
 (el-get-bundle terraform-mode)
@@ -63,6 +66,8 @@
 ;;;;;;(el-get-bundle tsv-mode)
 (el-get-bundle twittering-mode)
 ;;;;;;(el-get-bundle visual-basic-mode)
+(el-get-bundle vue-mode)
+(el-get-bundle vue-html-mode)
 (el-get-bundle web-mode)
 (el-get-bundle yaml-mode)
 (el-get-bundle zencoding-mode)
@@ -77,6 +82,7 @@
 (el-get-bundle avy)
 (el-get-bundle browse-kill-ring)        ; kill-ringの内容を一覧表示
 (el-get-bundle drag-stuff)              ; 行/Region/単語などをドラッグできるように
+(el-get-bundle edit-indirect)
 (el-get-bundle fringe-helper)
 (el-get-bundle git-gutter)
 (el-get-bundle git-gutter-fringe)       ; fringeにgit情報を表示
