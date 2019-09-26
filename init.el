@@ -64,6 +64,7 @@
             (ec-load-sass-mode-config)
             (ec-load-coffee-mode-config)
             (ec-load-org-mode-config)
+            (ec-load-vue-mode-config)
             (ec-load-auto-insert-config)
             (ec-load-navi2ch-config)
             (ec-load-open-junk-file-config)
@@ -370,7 +371,8 @@
 (defun ec-load-popwin-config ()
   (use-package popwin
     :config
-    (setq display-buffer-function 'popwin:display-buffer)
+
+    (setq pop-up-windows nil)
 
     (setq popwin:popup-window-position 'bottom) ; ポップアップの位置を画面下に表示
     (setq helm-samewindow nil)                  ; helmのポップアップウィンドウ対応
@@ -608,6 +610,12 @@
              )
       :config
       (setq helm-gtags-auto-update t)) ; バッファを保存した時にTAGファイル更新
+    (use-package helm-open-junk-file
+      :init
+      (setq helm-open-junk-file-directory "~/.emacs.d/data/junk/")
+      :bind (
+             ("C-x C-j" . helm-open-junk-file)
+             ))
     :bind (
            ("C-c h" . helm-mini)        ; helm起動
            ("C-x C-f" . helm-for-files) ; デフォルトのhelm-find-fileを変更
@@ -1081,6 +1089,15 @@
   )
 
 ;;------------------------------------------------------------------------------
+;; coffee-mode
+(defun ec-load-vue-mode-config ()
+  (use-package vue-mode
+    :mode (
+           ("\\.vue$" . vue-mode)
+           ))
+  )
+
+;;------------------------------------------------------------------------------
 ;; org-mode
 (defun ec-load-org-mode-config ()
   (require 'org-install)
@@ -1240,7 +1257,7 @@ C-uをつけると１レベル上、C-u C-uをつけると１レベル下の見�
 (defun ec-load-open-junk-file-config ()
   (use-package open-junk-file
     :config
-    (setq open-junk-file-format "~/.emacs.d/data/junk/%Y-%m/%d-%H%M%S.")
+    (setq open-junk-file-format "~/.emacs.d/data/junk/%Y-%m-%d-")
     :bind (
            ("C-, C-," . open-junk-file)
            ))
@@ -1439,6 +1456,12 @@ C-uをつけると１レベル上、C-u C-uをつけると１レベル下の見�
 (defvar run-emacs24
   (and (equal emacs-major-version 24)
        (null (featurep 'xemacs))))
+(defvar run-emacs25
+  (and (equal emacs-major-version 25)
+       (null (featurep 'xemacs))))
+(defvar run-emacs26
+  (and (equal emacs-major-version 26)
+       (null (featurep 'xemacs))))
 (defvar run-meadow (featurep 'meadow))
 (defvar run-meadow1 (and run-meadow run-emacs20))
 (defvar run-meadow2 (and run-meadow run-emacs21))
@@ -1455,9 +1478,14 @@ C-uをつけると１レベル上、C-u C-uをつけると１レベル下の見�
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (rainbow-mode htmlize ssh-config-mode gitconfig-mode gitignore-mode csv-mode helm-dired-recent-dirs))))
+    (edit-indirect ssass-mode mmm-mode vue-html-mode vue-mode rainbow-mode htmlize ssh-config-mode gitconfig-mode gitignore-mode csv-mode helm-dired-recent-dirs)))
+ '(recentf-save-file "~/.emacs.d/tmp/recentf")
+ '(undo-tree-auto-save-history t)
+ '(undo-tree-history-directory-alist (quote (("" . "~/.emacs.d/tmp/undo-tree"))))
+ '(undo-tree-visualizer-timestamps t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
