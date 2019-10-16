@@ -63,7 +63,7 @@
             (ec-load-scss-mode-config)
             (ec-load-sass-mode-config)
             (ec-load-coffee-mode-config)
-            (ec-load-org-mode-config)
+            ;(ec-load-org-mode-config)
             (ec-load-vue-mode-config)
             (ec-load-auto-insert-config)
             (ec-load-navi2ch-config)
@@ -544,17 +544,17 @@
   ;; ◎○●△▲□■◇◆
   ;;------------------------------------------------------------------------------
   (set-face-attribute 'default nil
-                      :family "Ricty for Powerline"
+                      :family "HackGen Console for Powerline"
                       :height 140)
   (set-fontset-font "fontset-default"
                     'japanese-jisx0208
-                    '("Ricty for Powerline")) ; 全角文字
+                    '("HackGen Console for Powerline")) ; 全角文字
   (set-fontset-font "fontset-default"
                     'katakana-jisx0201
-                    '("Ricty for Powerline")) ; 半角カタカナ
+                    '("HackGen Console for Powerline")) ; 半角カタカナ
   (set-fontset-font "fontset-default"
                     'cp932
-                    '("Ricty for Powerline")) ; 機種依存文字
+                    '("HackGen Console for Powerline")) ; 機種依存文字
   )
 
 ;;------------------------------------------------------------------------------

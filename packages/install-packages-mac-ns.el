@@ -128,7 +128,7 @@
 (el-get-bundle flycheck-pos-tip)
 
 ;; org-mode
-(el-get-bundle org-mode)
+;;(el-get-bundle org-mode)
 
 ;; magit
 (el-get-bundle magit)
