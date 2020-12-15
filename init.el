@@ -63,6 +63,7 @@
             (ec-load-scss-mode-config)
             (ec-load-sass-mode-config)
             (ec-load-coffee-mode-config)
+            (ec-load-typescript-mode-config)
             ;(ec-load-org-mode-config)
             (ec-load-vue-mode-config)
             (ec-load-auto-insert-config)
@@ -371,6 +372,8 @@
 (defun ec-load-popwin-config ()
   (use-package popwin
     :config
+
+    (popwin-mode 1)
 
     (setq pop-up-windows nil)
 
@@ -1050,6 +1053,15 @@
   )
 
 ;;------------------------------------------------------------------------------
+;; typescript-mode
+(defun ec-load-typescript-mode-config ()
+  (use-package typescript-mode
+    :mode (
+           ("\\.ts$" . typescript-mode)
+           ))
+  )
+
+;;------------------------------------------------------------------------------
 ;; js2-mode
 (defun ec-load-js-mode-config ()
   (use-package js2-mode
@@ -1481,7 +1493,7 @@ C-uをつけると１レベル上、C-u C-uをつけると１レベル下の見�
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (edit-indirect ssass-mode mmm-mode vue-html-mode vue-mode rainbow-mode htmlize ssh-config-mode gitconfig-mode gitignore-mode csv-mode helm-dired-recent-dirs)))
+    (typescript-mode edit-indirect ssass-mode mmm-mode vue-html-mode vue-mode rainbow-mode htmlize ssh-config-mode gitconfig-mode gitignore-mode csv-mode helm-dired-recent-dirs)))
  '(recentf-save-file "~/.emacs.d/tmp/recentf")
  '(undo-tree-auto-save-history t)
  '(undo-tree-history-directory-alist (quote (("" . "~/.emacs.d/tmp/undo-tree"))))
